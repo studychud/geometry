@@ -1,0 +1,1683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parallel Lines Study Guide</title>
+<meta name="description" content="Geometry Unit 2 study guide: angle pairs formed by parallel lines and a transversal, solving for x, two-column proofs, and conditional logic, with an interactive diagram and a practice test.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317694f'/%3E%3Cpath d='M4 12h24M4 22h24M12 29 21 3' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600&family=Noto+Sans+Math&display=swap">
+<style>
+/* Layout: one reading column under a sticky two-tab bar, like the other guides. Learn opens with the
+   one big idea (two angle sizes), then an interactive angle explorer, worked examples, proofs, and logic.
+   Diagrams are line drawings on plates that follow the theme. Practice is one question card at a time. */
+:root{
+  color-scheme:light;
+  --paper:#eef2f0; --surface:#f8fbf9; --ink:#0f1f1a; --ink-2:#4a5d56; --ink-3:#86978f; --rule:#d4dfda; --accent:#17694f; --accent-2:#a85a17;
+  --plate:#fbfdfc; --fig-ink:#1b2b26; --fig-ink-2:#5b6d66;
+  --hl:#17694f; --hl-fill:rgb(23 105 79 / .2); --hl-text:#0e4a37;
+  --hl2:#b0611c; --hl2-fill:rgb(190 110 30 / .2); --hl2-text:#7f430f;
+  --grid:rgb(23 105 79 / .075);
+  --good:#24704f; --good-bg:#e0f0e7; --bad:#b4442c; --bad-bg:#f8e3dc;
+  --f-display:"Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Noto Sans Math", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-var:"Iowan Old Style", "Palatino Linotype", Georgia, "Noto Sans Math", serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0c1412; --surface:#131d1a; --ink:#e6efeb; --ink-2:#a5b7b0; --ink-3:#6b7e77; --rule:#25322e; --accent:#6fd0aa; --accent-2:#eea463;
+    --plate:#131d1a; --fig-ink:#dde8e4; --fig-ink-2:#9cb0a8;
+    --hl:#6fd0aa; --hl-fill:rgb(111 208 170 / .2); --hl-text:#8fe0bf;
+    --hl2:#eea463; --hl2-fill:rgb(238 164 99 / .2); --hl2-text:#f5bd89;
+    --grid:rgb(111 208 170 / .06);
+    --good:#78d0a5; --good-bg:#11302a; --bad:#f39a82; --bad-bg:#3b1e18; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0c1412; --surface:#131d1a; --ink:#e6efeb; --ink-2:#a5b7b0; --ink-3:#6b7e77; --rule:#25322e; --accent:#6fd0aa; --accent-2:#eea463;
+  --plate:#131d1a; --fig-ink:#dde8e4; --fig-ink-2:#9cb0a8;
+  --hl:#6fd0aa; --hl-fill:rgb(111 208 170 / .2); --hl-text:#8fe0bf;
+  --hl2:#eea463; --hl2-fill:rgb(238 164 99 / .2); --hl2-text:#f5bd89;
+  --grid:rgb(111 208 170 / .06);
+  --good:#78d0a5; --good-bg:#11302a; --bad:#f39a82; --bad-bg:#3b1e18; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.01em}
+p{margin:0}
+b,strong{font-weight:700}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+i.v{font-family:var(--f-var);font-style:italic;font-size:1.06em}
+.seg{text-decoration:overline;text-decoration-thickness:1px}
+.ray{position:relative;display:inline-block;line-height:1.1}
+.ray::before{content:"";position:absolute;left:0;right:3px;top:-.12em;border-top:1.3px solid currentColor}
+.ray::after{content:"";position:absolute;right:-1px;top:calc(-.12em - 3.2px);border-style:solid;border-width:3.6px 0 3.6px 5.5px;border-color:transparent transparent transparent currentColor}
+.sym{font-family:var(--f-body);white-space:nowrap}
+.op{font-family:"Noto Sans Math", "STIX Two Math", "Cambria Math", var(--f-body);font-size:1.2em;line-height:1;font-style:normal;font-weight:400}
+
+/* masthead */
+.masthead{background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);background-size:26px 26px;background-position:-1px -1px}
+.masthead .wrap{padding-block:44px 30px;display:grid;gap:10px}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+.masthead h1{font-size:clamp(2.7rem, 7.4vw, 4.8rem);letter-spacing:-.02em;font-weight:500}
+.dek{max-width:62ch;color:var(--ink-2);font-size:1.08rem}
+
+/* tab bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--paper)}
+.tabbar{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+.tabbar .wrap{display:flex;align-items:center;gap:20px;padding-block:10px}
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surface);border:1px solid var(--rule);border-radius:999px;flex:none}
+.tabs button{border:0;background:none;padding:8px 18px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.98rem;color:var(--ink-2)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.jump{display:flex;gap:4px 18px;overflow-x:auto;scrollbar-width:none;min-width:0;font-size:.92rem}
+.jump::-webkit-scrollbar{display:none}
+.jump a{color:var(--ink-2);text-decoration:none;white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent}
+.jump a:hover{color:var(--ink);border-bottom-color:var(--ink-3)}
+
+main{padding-block:8px 80px}
+.sec{padding-block:48px 8px;scroll-margin-top:72px}
+.sec-head{display:grid;gap:8px;margin-bottom:26px;max-width:70ch}
+.sec-head h2{font-size:clamp(2rem, 4.6vw, 2.8rem)}
+.sec-head p{color:var(--ink-2)}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.sub-h{font-size:clamp(1.45rem, 3vw, 1.8rem);margin:44px 0 16px}
+.lead{max-width:68ch;color:var(--ink-2);margin-bottom:18px}
+
+/* figures */
+.plate{background:var(--plate);border:1px solid var(--rule);border-radius:8px;padding:10px;margin:0}
+.geo{display:block;width:100%;height:auto;overflow:visible}
+.geo .ln{fill:none;stroke:var(--fig-ink);stroke-width:1.6;stroke-linecap:round}
+.geo .ah,.geo .pt{fill:var(--fig-ink)}
+.geo .chev{fill:none;stroke:var(--fig-ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.geo .w{fill:none}
+.geo .w.hl{fill:var(--hl-fill)}
+.geo .w.hl2{fill:var(--hl2-fill)}
+.geo .arc{fill:none;stroke-width:1.7}
+.geo .arc.hl{stroke:var(--hl)}
+.geo .arc.hl2{stroke:var(--hl2)}
+.geo .arc.mk{stroke:var(--fig-ink);stroke-width:1.2}
+.geo text{dominant-baseline:central}
+.geo .num{font:700 14px var(--f-body);fill:var(--fig-ink-2);text-anchor:middle}
+.geo .num.on.hl{fill:var(--hl-text)}
+.geo .num.on.hl2{fill:var(--hl2-text)}
+.geo .expr{font:700 14px var(--f-body);fill:var(--fig-ink);paint-order:stroke;stroke:var(--plate);stroke-width:4px;stroke-linejoin:round}
+.geo .meas{font:400 12px var(--f-body);fill:var(--fig-ink-2);paint-order:stroke;stroke:var(--plate);stroke-width:3px;stroke-linejoin:round}
+.geo .lname,.geo .pname{font:italic 400 17px var(--f-var);fill:var(--fig-ink)}
+.geo .pname{font-size:16px}
+.geo .hit{fill:transparent;cursor:pointer}
+.geo .hit:hover{fill:var(--hl-fill)}
+.geo .hline{stroke:var(--hl);stroke-width:3}
+.geo .faint{stroke:var(--fig-ink-2);stroke-dasharray:4 4}
+.geo .sq{fill:none;stroke:var(--fig-ink);stroke-width:1.3}
+.cap{font-size:.9rem;color:var(--ink-2);margin-top:8px}
+
+/* overview */
+.big{display:grid;grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);gap:24px 36px;align-items:center}
+.sizes{display:grid;gap:12px}
+.size-card{border-radius:8px;padding:16px 18px;display:grid;gap:8px;border:1px solid var(--rule);background:var(--surface);border-left:5px solid var(--c)}
+.size-card.c1{--c:var(--hl)}
+.size-card.c2{--c:var(--hl2)}
+.size-card h3{font-size:1.35rem}
+.size-card h3 small{font-family:var(--f-body);font-size:.9rem;font-weight:400;color:var(--ink-2);margin-left:6px}
+.size-card ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.size-card li{padding:4px 11px;border-radius:999px;font-size:.92rem;font-weight:700;background:var(--paper);border:1px solid var(--rule)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;color:var(--ink-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1.5px solid var(--c);background:var(--f)}
+.shortcut{margin-top:22px;padding:16px 18px;border:1px solid var(--ink);border-radius:8px;display:grid;gap:6px;max-width:860px}
+.shortcut b.t{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* explorer */
+.explorer{display:grid;grid-template-columns:minmax(0, 1.1fr) minmax(0, 1fr);gap:20px 32px;align-items:start}
+.ex-side{display:grid;gap:16px;align-content:start}
+.ex-label{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.pair-btns{display:flex;flex-wrap:wrap;gap:8px}
+.pair-btns button{border:1px solid var(--rule);background:var(--surface);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.92rem;cursor:pointer}
+.pair-btns button:hover{border-color:var(--ink)}
+.pair-btns button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ex-out{min-height:150px;padding:16px 18px;border-radius:8px;background:var(--surface);border:1px solid var(--rule);display:grid;gap:6px;align-content:start}
+.ex-out h3{font-size:1.4rem}
+.ex-out .rel{font-weight:700}
+.ex-out .rel.cong{color:var(--hl-text)}
+.ex-out .rel.supp{color:var(--hl2-text)}
+.ex-out .muted,.ex-hint{color:var(--ink-2)}
+.ex-out .note{font-size:.9rem;color:var(--ink-3)}
+.ex-controls{display:grid;gap:10px;font-size:.95rem}
+.tilt{display:grid;grid-template-columns:auto minmax(0, 1fr) 3.2em;gap:12px;align-items:center}
+.tilt input{width:100%;accent-color:var(--accent)}
+.tilt output{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.check{display:inline-flex;gap:10px;align-items:center;cursor:pointer}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+
+/* pair cards */
+.pair-cards{display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:14px;margin-top:30px}
+.pc{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 12px 16px;display:grid;gap:8px;align-content:start}
+.pc .plate{padding:4px;border:0;background:var(--plate)}
+.pc h3{font-size:1.25rem;padding:4px 4px 0}
+.pc p{font-size:.94rem;color:var(--ink-2);padding:0 4px}
+.pc p b{color:var(--ink)}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-left:4px;justify-self:start}
+.tag.cong{background:var(--hl-fill);color:var(--hl-text)}
+.tag.supp{background:var(--hl2-fill);color:var(--hl2-text)}
+.pc.decoder{background:none;border-style:dashed;border-color:var(--ink-3);padding:16px;align-content:start;gap:12px}
+.decoder dl{margin:0;display:grid}
+.decoder dl div{display:grid;gap:1px;padding:7px 0;border-top:1px solid var(--rule);font-size:.93rem}
+.decoder dt{font-weight:700}
+.decoder dd{margin:0;color:var(--ink-2)}
+
+/* tables */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+table.sum{border-collapse:collapse;width:100%;min-width:860px;font-size:.95rem}
+.sum th,.sum td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+.sum tbody tr:last-child td{border-bottom:0}
+.sum thead th{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);font-weight:700;background:var(--paper)}
+.sum td:first-child{font-weight:700}
+.sum .always{color:var(--ink-3);font-style:italic}
+
+/* kinds of lines */
+.kinds{display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px}
+.kind{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px;display:grid;gap:6px;align-content:start}
+.kind svg{max-width:220px}
+.kind h4{font-size:1.15rem}
+.kind p{font-size:.92rem;color:var(--ink-2)}
+.facts2{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px;margin-top:12px}
+.facts2 > div{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:grid;gap:4px}
+.facts2 b.t,.callout b.t,.two b.t{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* steps & examples */
+.steps4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px;counter-reset:s}
+.steps4 li{counter-increment:s;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.steps4 li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:700;font-size:.9rem;margin-bottom:4px}
+.steps4 b{font-family:var(--f-display);font-weight:500;font-size:1.15rem}
+.steps4 span{font-size:.94rem;color:var(--ink-2)}
+.examples{display:grid;gap:16px;margin-top:22px}
+.ex{display:grid;grid-template-columns:minmax(0, 400px) minmax(0, 1fr);gap:18px 28px;align-items:start;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px}
+.ex .plate{border:0}
+.ex-body{display:grid;gap:10px;align-content:start;padding-top:4px}
+.ex-body h3{font-size:1.3rem}
+.ex-body .prob{color:var(--ink-2)}
+.work{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.work li::marker{color:var(--ink-3);font-weight:700}
+.ans{font-weight:700;padding:8px 12px;border-radius:6px;background:var(--hl-fill);color:var(--hl-text);justify-self:start}
+.callout{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;display:grid;gap:8px}
+.callout ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.callout.warn{border-left:4px solid var(--accent-2)}
+.callout.warn b.t{color:var(--accent-2)}
+
+/* proofs */
+.two{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px}
+.two > div{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.two h4{font-size:1.2rem}
+.reasons{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px}
+.rbox{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px 10px;display:grid;gap:4px;align-content:start}
+.rbox h4{font-size:1.15rem;margin-bottom:4px}
+.rbox dl{margin:0;display:grid}
+.rbox dl div{display:grid;gap:2px;padding:8px 0;border-top:1px solid var(--rule)}
+.rbox dt{font-weight:700;font-size:.96rem}
+.rbox dd{margin:0;color:var(--ink-2);font-size:.92rem}
+.proof{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:grid;gap:16px;margin-top:16px}
+.proof-top{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 360px);gap:16px 24px;align-items:center}
+.proof-top h3{font-size:1.45rem}
+.gp{display:grid;gap:4px;margin-top:10px}
+.gp p{font-size:1.02rem}
+.gp b{display:inline-block;min-width:4.4em;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.proof .plate{border:0}
+.pf-scroll{overflow-x:auto}
+table.pf{border-collapse:collapse;width:100%;min-width:540px;font-size:.98rem;background:var(--plate);border:1px solid var(--rule)}
+.pf th,.pf td{padding:10px 14px;border:1px solid var(--rule);text-align:left;vertical-align:top}
+.pf thead th{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);background:var(--paper)}
+.pf td:first-child{width:2.6em;color:var(--ink-3);font-weight:700;text-align:center}
+.pf td:nth-child(2){width:44%}
+.pf tr.cover td:not(:first-child) > span{visibility:hidden}
+.pf tr.cover td:not(:first-child){background:repeating-linear-gradient(-45deg, transparent 0 7px, var(--grid) 7px 9px)}
+.pf tr.fresh td:not(:first-child){animation:fresh .9s ease}
+@keyframes fresh{from{background:var(--hl-fill)}to{background:transparent}}
+.why{font-size:.94rem;color:var(--ink-2);display:grid;gap:4px}
+.why b{color:var(--ink)}
+
+/* logic */
+.cond{font-size:clamp(1.15rem, 2.6vw, 1.45rem);font-family:var(--f-display);font-weight:400;line-height:1.35;padding:18px 20px;background:var(--surface);border:1px solid var(--rule);border-radius:8px}
+.cond .p{background:var(--hl-fill);color:var(--hl-text);padding:1px 6px;border-radius:4px}
+.cond .q{background:var(--hl2-fill);color:var(--hl2-text);padding:1px 6px;border-radius:4px}
+.cond-key{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.92rem;color:var(--ink-2);margin-top:10px}
+table.forms{min-width:820px}
+.forms td:nth-child(2){font-family:var(--f-body);font-weight:700;white-space:nowrap;font-size:1.05rem}
+.forms .yes{color:var(--good);font-weight:700}
+.forms .no{color:var(--ink-2)}
+.equiv{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px;margin-top:12px}
+.equiv > div{border:1px dashed var(--ink-3);border-radius:8px;padding:12px 16px;display:grid;gap:2px}
+.equiv b{font-family:var(--f-display);font-weight:500;font-size:1.1rem}
+.equiv span{font-size:.93rem;color:var(--ink-2)}
+.laws{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px}
+.law{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;display:grid;gap:10px;align-content:start}
+.law h4{font-size:1.3rem}
+.law .form{font-weight:700;font-size:1.02rem}
+.arg{margin:0;padding:12px 14px;border-radius:6px;background:var(--paper);display:grid;gap:3px;font-size:.96rem}
+.arg .then{border-top:1px solid var(--ink-3);padding-top:4px;margin-top:2px;font-weight:700}
+.bad-args{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:12px}
+.bad-args > div{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--bad);border-radius:8px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.bad-args h4{font-size:1.1rem}
+.bad-args p{font-size:.93rem;color:var(--ink-2)}
+
+/* vocab */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:0 28px;border-top:1px solid var(--rule);margin:0}
+.vocab div{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;gap:3px}
+.vocab dt{font-family:var(--f-display);font-weight:500;font-size:1.12rem}
+.vocab dd{margin:0;color:var(--ink-2);font-size:.95rem}
+
+/* practice */
+#practice .wrap{max-width:880px}
+.qz-card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:28px clamp(18px, 4vw, 36px);display:grid;gap:22px;margin-top:36px}
+.qz-card h2{font-size:clamp(2rem, 5vw, 2.7rem)}
+.qz-sub{color:var(--ink-2)}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+legend{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2);padding:0;margin-bottom:10px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.pill span{display:inline-flex;gap:8px;align-items:center;padding:9px 16px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);font-weight:700;font-size:.95rem;cursor:pointer}
+.pill span small{font-weight:400;color:var(--ink-2)}
+.pill input:checked + span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pill input:checked + span small{color:inherit;opacity:.75}
+.pill input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--ink);background:none;padding:11px 22px;border-radius:999px;font-weight:700;cursor:pointer;font-size:1rem}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.small-note{font-size:.88rem;color:var(--ink-3)}
+.qz-top{display:grid;gap:10px}
+.qz-progress{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.qz-bar{height:4px;background:var(--rule);border-radius:2px;overflow:hidden}
+.qz-bar span{display:block;height:100%;background:var(--ink);width:0;transition:width .25s ease}
+.qz-topic{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.qz-q{font-family:var(--f-display);font-weight:500;font-size:clamp(1.35rem, 3.2vw, 1.75rem);line-height:1.28;text-wrap:pretty}
+.qz-fig:empty{display:none}
+.qz-fig{justify-self:center;width:100%}
+.qz-fig .plate{max-width:480px;margin:0 auto}
+.opts{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:30px minmax(0, 1fr);gap:12px;align-items:center;text-align:left;padding:13px 16px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;font-size:1.02rem;line-height:1.35}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .k{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--ink-3);font-size:.85rem;font-weight:700;color:var(--ink-2)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right .k{background:var(--good);border-color:var(--good);color:var(--good-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:var(--bad-bg)}
+.opt.dim{opacity:.55}
+.numform{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.numform label{font-weight:700}
+.numbox{display:inline-flex;align-items:center;border:1px solid var(--ink-3);border-radius:6px;background:var(--paper);padding:0 12px}
+.numbox:focus-within{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.numbox input{border:0;background:none;font:inherit;font-size:1.15rem;width:7em;padding:10px 0;color:var(--ink);outline:none}
+.numbox span{color:var(--ink-2);font-size:1.15rem}
+.numbox.right{border-color:var(--good);background:var(--good-bg)}
+.numbox.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.fb{display:grid;gap:6px;padding:14px 16px;border-radius:6px;border-left:4px solid var(--ink)}
+.fb.good{border-left-color:var(--good);background:var(--good-bg)}
+.fb.bad{border-left-color:var(--bad);background:var(--bad-bg)}
+.fb.good strong{color:var(--good)}
+.fb.bad strong{color:var(--bad)}
+.fb ol{margin:4px 0 0;padding-left:1.3em;display:grid;gap:3px}
+.kbd{font-size:.82rem;color:var(--ink-3)}
+.score{display:grid;grid-template-columns:auto minmax(0, 1fr);gap:24px;align-items:center}
+.score-num{font-family:var(--f-display);font-weight:500;font-size:clamp(3.4rem, 12vw, 5.2rem);line-height:.9;font-variant-numeric:tabular-nums}
+.score-num small{font-size:.4em;color:var(--ink-2)}
+.tally{display:flex;flex-wrap:wrap;gap:8px}
+.tally span{font-size:.85rem;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);color:var(--ink-2)}
+.review{display:grid;border-top:1px solid var(--rule)}
+.review h3{font-family:var(--f-body);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);padding:16px 0 4px}
+.rv{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.rv .rq{font-weight:700}
+.rv .ry{color:var(--bad);text-decoration:line-through;text-decoration-thickness:1px}
+.rv .rc{color:var(--good);font-weight:700}
+.rv .re{color:var(--ink-2);font-size:.94rem}
+
+@media (max-width: 960px){
+  .big,.explorer{grid-template-columns:minmax(0, 1fr)}
+  .pair-cards{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .steps4{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .kinds{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .ex{grid-template-columns:minmax(0, 1fr)}
+  .ex .plate{max-width:460px}
+  .proof-top{grid-template-columns:minmax(0, 1fr)}
+  .proof-top .plate{max-width:420px}
+  .bad-args{grid-template-columns:minmax(0, 1fr)}
+}
+@media (max-width: 700px){
+  .two,.reasons,.laws,.equiv,.facts2,.pair-cards{grid-template-columns:minmax(0, 1fr)}
+  .steps4{grid-template-columns:minmax(0, 1fr)}
+  .tabbar .wrap{flex-direction:column;align-items:stretch;gap:8px}
+  .tabs{align-self:flex-start}
+  .score{grid-template-columns:minmax(0, 1fr)}
+  .tilt{grid-template-columns:minmax(0, 1fr) 3.2em}
+  .tilt span{grid-column:1 / -1}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important;scroll-behavior:auto!important} }
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Geometry · Unit 2</p>
+    <h1>Parallel Lines</h1>
+    <p class="dek">Angle pairs made by parallel lines and a transversal, solving for <i class="v">x</i>, two-column proofs, and the logic behind them. Learn it, then test yourself.</p>
+  </div>
+</header>
+
+<nav class="tabbar" aria-label="Study modes">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-learn" aria-controls="learn" aria-selected="true">Learn</button>
+      <button type="button" role="tab" id="tab-practice" aria-controls="practice" aria-selected="false">Practice test</button>
+    </div>
+    <div class="jump" id="jump">
+      <a href="#overview">The big idea</a>
+      <a href="#pairs">Angle pairs</a>
+      <a href="#solve">Solving for x</a>
+      <a href="#proofs">Proofs</a>
+      <a href="#logic">Logic</a>
+      <a href="#vocab">Key words</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- ============================================================ LEARN -->
+<section id="learn" role="tabpanel" aria-labelledby="tab-learn">
+  <div class="wrap">
+
+    <section class="sec" id="overview">
+      <div class="sec-head">
+        <p class="kicker">The big idea</p>
+        <h2>Eight angles, only two sizes</h2>
+        <p>When a <b>transversal</b> crosses two <b>parallel</b> lines, it makes eight angles. But there are only two different sizes: every acute angle is equal, every obtuse angle is equal, and one of each always adds up to 180°.</p>
+      </div>
+      <div class="big">
+        <figure class="plate" style="margin:0">
+          <svg class="geo tfig" viewBox="0 0 440 290" role="img" aria-label="Two parallel lines cut by a transversal. The four acute angles are 60 degrees and the four obtuse angles are 120 degrees."><path class="w hl2" d="M248.9 95L258.4 78.5A19 19 0 0 0 229.9 95Z"/><path class="w hl" d="M248.9 95L267.9 95A19 19 0 0 0 258.4 78.5Z"/><path class="w hl" d="M248.9 95L229.9 95A19 19 0 0 0 239.4 111.5Z"/><path class="w hl2" d="M248.9 95L239.4 111.5A19 19 0 0 0 267.9 95Z"/><path class="w hl2" d="M191.1 195L200.6 178.5A19 19 0 0 0 172.1 195Z"/><path class="w hl" d="M191.1 195L210.1 195A19 19 0 0 0 200.6 178.5Z"/><path class="w hl" d="M191.1 195L172.1 195A19 19 0 0 0 181.6 211.5Z"/><path class="w hl2" d="M191.1 195L181.6 211.5A19 19 0 0 0 210.1 195Z"/><path class="ln" d="M16 95L424 95"/><path class="ah" d="M10 95L20 99.4L20 90.6Z"/><path class="ah" d="M430 95L420 90.6L420 99.4Z"/><path class="chev" d="M60 90L66 95L60 100"/><path class="ln" d="M16 195L424 195"/><path class="ah" d="M10 195L20 199.4L20 190.6Z"/><path class="ah" d="M430 195L420 190.6L420 199.4Z"/><path class="chev" d="M60 190L66 195L60 200"/><path class="ln tr" d="M145.1 274.8L294.9 15.2"/><path class="ah" d="M142.1 280L150.9 273.5L143.2 269.1Z"/><path class="ah" d="M297.9 10L289.1 16.5L296.8 20.9Z"/><path class="arc hl2" d="M258.4 78.5A19 19 0 0 0 229.9 95"/><path class="arc hl" d="M267.9 95A19 19 0 0 0 258.4 78.5"/><path class="arc hl" d="M229.9 95A19 19 0 0 0 239.4 111.5"/><path class="arc hl2" d="M239.4 111.5A19 19 0 0 0 267.9 95"/><path class="arc hl2" d="M200.6 178.5A19 19 0 0 0 172.1 195"/><path class="arc hl" d="M210.1 195A19 19 0 0 0 200.6 178.5"/><path class="arc hl" d="M172.1 195A19 19 0 0 0 181.6 211.5"/><path class="arc hl2" d="M181.6 211.5A19 19 0 0 0 210.1 195"/><text class="lname" x="424" y="83" text-anchor="middle">ℓ</text><text class="lname" x="424" y="183" text-anchor="middle">m</text><text class="lname" x="304.1" y="27.4" text-anchor="middle">t</text><text class="meas" x="234.4" y="69.9" text-anchor="middle">120°</text><text class="meas" x="274" y="80.5" text-anchor="middle">60°</text><text class="meas" x="223.8" y="109.5" text-anchor="middle">60°</text><text class="meas" x="263.4" y="120.1" text-anchor="middle">120°</text><text class="meas" x="176.6" y="169.9" text-anchor="middle">120°</text><text class="meas" x="216.2" y="180.5" text-anchor="middle">60°</text><text class="meas" x="166" y="209.5" text-anchor="middle">60°</text><text class="meas" x="205.6" y="220.1" text-anchor="middle">120°</text></svg>
+          <div class="legend" style="padding:0 6px 4px">
+            <span style="--c:var(--hl);--f:var(--hl-fill)"><i></i>The four acute angles: all 60°</span>
+            <span style="--c:var(--hl2);--f:var(--hl2-fill)"><i></i>The four obtuse angles: all 120°</span>
+          </div>
+        </figure>
+        <div class="sizes">
+          <div class="size-card c1">
+            <h3>Congruent <small>equal measures</small></h3>
+            <ul><li>Corresponding</li><li>Alternate interior</li><li>Alternate exterior</li><li>Vertical</li></ul>
+          </div>
+          <div class="size-card c2">
+            <h3>Supplementary <small>add up to 180°</small></h3>
+            <ul><li>Same-side interior</li><li>Same-side exterior</li><li>Linear pair</li></ul>
+          </div>
+          <p class="small-note" style="color:var(--ink-2)">The arrow marks (›) on lines <i class="v">ℓ</i> and <i class="v">m</i> mean they are parallel. These rules only work when the lines are parallel, except vertical angles and linear pairs, which work for any two lines that cross.</p>
+        </div>
+      </div>
+      <div class="shortcut">
+        <b class="t">The shortcut</b>
+        <p>With parallel lines, if two angles are <b>both acute or both obtuse, they're equal</b>. If <b>one is acute and one is obtuse, they add to 180°</b>. You still need the pair's name for proofs, but this tells you which equation to write.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="pairs">
+      <div class="sec-head">
+        <p class="kicker">Lines &amp; angles</p>
+        <h2>Angle pairs</h2>
+        <p>A <b>transversal</b> is a line that crosses two or more lines. Angles <b>between</b> the two lines are <b>interior</b>. Angles <b>outside</b> them are <b>exterior</b>. Each pair's name tells you where its two angles are.</p>
+      </div>
+
+      <div class="explorer" id="explorer">
+        <figure class="plate ex-fig" style="margin:0"><svg class="geo tfig" viewBox="0 0 440 290" role="img" aria-label="Two parallel lines cut by a transversal, angles numbered 1 to 8"><path class="ln" d="M16 95L424 95"/><path class="ah" d="M10 95L20 99.4L20 90.6Z"/><path class="ah" d="M430 95L420 90.6L420 99.4Z"/><path class="chev" d="M60 90L66 95L60 100"/><path class="ln" d="M16 195L424 195"/><path class="ah" d="M10 195L20 199.4L20 190.6Z"/><path class="ah" d="M430 195L420 190.6L420 199.4Z"/><path class="chev" d="M60 190L66 195L60 200"/><path class="ln tr" d="M145.1 274.8L294.9 15.2"/><path class="ah" d="M142.1 280L150.9 273.5L143.2 269.1Z"/><path class="ah" d="M297.9 10L289.1 16.5L296.8 20.9Z"/><text class="lname" x="424" y="83" text-anchor="middle">ℓ</text><text class="lname" x="424" y="183" text-anchor="middle">m</text><text class="lname" x="304.1" y="27.4" text-anchor="middle">t</text><text class="num" x="234.4" y="69.9">1</text><text class="num" x="274" y="80.5">2</text><text class="num" x="223.8" y="109.5">3</text><text class="num" x="263.4" y="120.1">4</text><text class="num" x="176.6" y="169.9">5</text><text class="num" x="216.2" y="180.5">6</text><text class="num" x="166" y="209.5">7</text><text class="num" x="205.6" y="220.1">8</text><path class="hit" data-n="1" d="M248.9 95L271.9 55.2A46 46 0 0 0 202.9 95Z"/><path class="hit" data-n="2" d="M248.9 95L294.9 95A46 46 0 0 0 271.9 55.2Z"/><path class="hit" data-n="3" d="M248.9 95L202.9 95A46 46 0 0 0 225.9 134.8Z"/><path class="hit" data-n="4" d="M248.9 95L225.9 134.8A46 46 0 0 0 294.9 95Z"/><path class="hit" data-n="5" d="M191.1 195L214.1 155.2A46 46 0 0 0 145.1 195Z"/><path class="hit" data-n="6" d="M191.1 195L237.1 195A46 46 0 0 0 214.1 155.2Z"/><path class="hit" data-n="7" d="M191.1 195L145.1 195A46 46 0 0 0 168.1 234.8Z"/><path class="hit" data-n="8" d="M191.1 195L168.1 234.8A46 46 0 0 0 237.1 195Z"/></svg></figure>
+        <div class="ex-side">
+          <p class="ex-label">Try it: pick a pair</p>
+          <div class="pair-btns">
+            <button type="button" data-pair="corr" aria-pressed="false">Corresponding</button>
+            <button type="button" data-pair="ai" aria-pressed="false">Alternate interior</button>
+            <button type="button" data-pair="ae" aria-pressed="false">Alternate exterior</button>
+            <button type="button" data-pair="ssi" aria-pressed="false">Same-side interior</button>
+            <button type="button" data-pair="sse" aria-pressed="false">Same-side exterior</button>
+            <button type="button" data-pair="vert" aria-pressed="false">Vertical</button>
+            <button type="button" data-pair="linear" aria-pressed="false">Linear pair</button>
+          </div>
+          <div class="ex-out" id="ex-out" aria-live="polite"><p class="ex-hint">Pick a pair above, or click any two angles in the drawing to see how they're related.</p></div>
+          <div class="ex-controls">
+            <label class="tilt"><span>Tilt the transversal</span><input type="range" id="ex-tilt" min="35" max="145" step="1" value="60"><output id="ex-tilt-val" for="ex-tilt">60°</output></label>
+            <label class="check"><input type="checkbox" id="ex-meas"> Show angle measures</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-cards">
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Corresponding angles: angles 2 and 6"><path class="w hl" d="M183.6 78L202.6 78A19 19 0 0 0 192.5 61.2Z"/><path class="w hl" d="M146.4 148L165.4 148A19 19 0 0 0 155.3 131.2Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M202.6 78A19 19 0 0 0 192.5 61.2"/><path class="arc hl" d="M165.4 148A19 19 0 0 0 155.3 131.2"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="208.5" y="63.1">2</text><text class="num on hl" x="171.2" y="133.1">6</text></svg></div><h3>Corresponding angles</h3><span class="tag cong">Congruent</span>
+          <p><b>Where:</b> the same spot at each intersection (both upper-left, both lower-right, and so on).</p>
+          <p><b>Look for:</b> an F shape. <b>Pairs:</b> <span class="op">∠</span>1 &amp; <span class="op">∠</span>5, <span class="op">∠</span>2 &amp; <span class="op">∠</span>6, <span class="op">∠</span>3 &amp; <span class="op">∠</span>7, <span class="op">∠</span>4 &amp; <span class="op">∠</span>8.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Alternate interior angles: angles 3 and 6"><path class="w hl" d="M183.6 78L164.6 78A19 19 0 0 0 174.7 94.8Z"/><path class="w hl" d="M146.4 148L165.4 148A19 19 0 0 0 155.3 131.2Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M164.6 78A19 19 0 0 0 174.7 94.8"/><path class="arc hl" d="M165.4 148A19 19 0 0 0 155.3 131.2"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="158.8" y="92.9">3</text><text class="num on hl" x="171.2" y="133.1">6</text></svg></div><h3>Alternate interior angles</h3><span class="tag cong">Congruent</span>
+          <p><b>Where:</b> between the lines, on opposite sides of the transversal.</p>
+          <p><b>Look for:</b> a Z shape. <b>Pairs:</b> <span class="op">∠</span>3 &amp; <span class="op">∠</span>6, <span class="op">∠</span>4 &amp; <span class="op">∠</span>5.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Alternate exterior angles: angles 1 and 8"><path class="w hl" d="M183.6 78L192.5 61.2A19 19 0 0 0 164.6 78Z"/><path class="w hl" d="M146.4 148L137.5 164.8A19 19 0 0 0 165.4 148Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M192.5 61.2A19 19 0 0 0 164.6 78"/><path class="arc hl" d="M137.5 164.8A19 19 0 0 0 165.4 148"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="168.7" y="53.1">1</text><text class="num on hl" x="161.3" y="172.9">8</text></svg></div><h3>Alternate exterior angles</h3><span class="tag cong">Congruent</span>
+          <p><b>Where:</b> outside the lines, on opposite sides of the transversal.</p>
+          <p><b>Pairs:</b> <span class="op">∠</span>1 &amp; <span class="op">∠</span>8, <span class="op">∠</span>2 &amp; <span class="op">∠</span>7.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Vertical angles: angles 1 and 4"><path class="w hl" d="M183.6 78L192.5 61.2A19 19 0 0 0 164.6 78Z"/><path class="w hl" d="M183.6 78L174.7 94.8A19 19 0 0 0 202.6 78Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M192.5 61.2A19 19 0 0 0 164.6 78"/><path class="arc hl" d="M174.7 94.8A19 19 0 0 0 202.6 78"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="168.7" y="53.1">1</text><text class="num on hl" x="198.5" y="102.9">4</text></svg></div><h3>Vertical angles</h3><span class="tag cong">Always congruent</span>
+          <p><b>Where:</b> across from each other at the same intersection. They make an X.</p>
+          <p><b>Pairs:</b> <span class="op">∠</span>1 &amp; <span class="op">∠</span>4, <span class="op">∠</span>2 &amp; <span class="op">∠</span>3, <span class="op">∠</span>5 &amp; <span class="op">∠</span>8, <span class="op">∠</span>6 &amp; <span class="op">∠</span>7. True for any two crossing lines.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Same-side interior angles: angles 4 and 6"><path class="w hl" d="M183.6 78L174.7 94.8A19 19 0 0 0 202.6 78Z"/><path class="w hl" d="M146.4 148L165.4 148A19 19 0 0 0 155.3 131.2Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M174.7 94.8A19 19 0 0 0 202.6 78"/><path class="arc hl" d="M165.4 148A19 19 0 0 0 155.3 131.2"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="198.5" y="102.9">4</text><text class="num on hl" x="171.2" y="133.1">6</text></svg></div><h3>Same-side interior angles</h3><span class="tag supp">Supplementary</span>
+          <p><b>Where:</b> between the lines, on the same side of the transversal. Also called <b>consecutive interior</b> angles.</p>
+          <p><b>Look for:</b> a C or U shape. <b>Pairs:</b> <span class="op">∠</span>3 &amp; <span class="op">∠</span>5, <span class="op">∠</span>4 &amp; <span class="op">∠</span>6.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Same-side exterior angles: angles 2 and 8"><path class="w hl" d="M183.6 78L202.6 78A19 19 0 0 0 192.5 61.2Z"/><path class="w hl" d="M146.4 148L137.5 164.8A19 19 0 0 0 165.4 148Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M202.6 78A19 19 0 0 0 192.5 61.2"/><path class="arc hl" d="M137.5 164.8A19 19 0 0 0 165.4 148"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="208.5" y="63.1">2</text><text class="num on hl" x="161.3" y="172.9">8</text></svg></div><h3>Same-side exterior angles</h3><span class="tag supp">Supplementary</span>
+          <p><b>Where:</b> outside the lines, on the same side of the transversal. Also called <b>consecutive exterior</b> angles.</p>
+          <p><b>Pairs:</b> <span class="op">∠</span>1 &amp; <span class="op">∠</span>7, <span class="op">∠</span>2 &amp; <span class="op">∠</span>8.</p></article>
+        <article class="pc"><div class="plate"><svg class="geo tfig" viewBox="0 0 330 226" role="img" aria-label="Linear pair: angles 1 and 2"><path class="w hl" d="M183.6 78L192.5 61.2A19 19 0 0 0 164.6 78Z"/><path class="w hl" d="M183.6 78L202.6 78A19 19 0 0 0 192.5 61.2Z"/><path class="ln" d="M16 78L314 78"/><path class="ah" d="M10 78L20 82.4L20 73.6Z"/><path class="ah" d="M320 78L310 73.6L310 82.4Z"/><path class="chev" d="M44 73L50 78L44 83"/><path class="ln" d="M16 148L314 148"/><path class="ah" d="M10 148L20 152.4L20 143.6Z"/><path class="ah" d="M320 148L310 143.6L310 152.4Z"/><path class="chev" d="M44 143L50 148L44 153"/><path class="ln tr" d="M113.1 210.7L216.9 15.3"/><path class="ah" d="M110.2 216L118.8 209.2L111 205.1Z"/><path class="ah" d="M219.8 10L211.2 16.8L219 20.9Z"/><path class="arc hl" d="M192.5 61.2A19 19 0 0 0 164.6 78"/><path class="arc hl" d="M202.6 78A19 19 0 0 0 192.5 61.2"/><text class="lname" x="314" y="66" text-anchor="middle">ℓ</text><text class="lname" x="314" y="136" text-anchor="middle">m</text><text class="lname" x="226.5" y="27.2" text-anchor="middle">t</text><text class="num on hl" x="168.7" y="53.1">1</text><text class="num on hl" x="208.5" y="63.1">2</text></svg></div><h3>Linear pair</h3><span class="tag supp">Always supplementary</span>
+          <p><b>Where:</b> side by side at the same intersection, sharing a side. Together they make a straight line (180°).</p>
+          <p><b>Pairs:</b> <span class="op">∠</span>1 &amp; <span class="op">∠</span>2, <span class="op">∠</span>1 &amp; <span class="op">∠</span>3, <span class="op">∠</span>2 &amp; <span class="op">∠</span>4, and so on. True for any two crossing lines.</p></article>
+        <article class="pc decoder"><h3>Reading the names</h3>
+          <dl>
+            <div><dt>Interior</dt><dd>between the two lines</dd></div>
+            <div><dt>Exterior</dt><dd>outside the two lines</dd></div>
+            <div><dt>Alternate</dt><dd>opposite sides of the transversal</dd></div>
+            <div><dt>Same-side</dt><dd>same side of the transversal</dd></div>
+            <div><dt>Corresponding</dt><dd>same corner at each intersection</dd></div>
+          </dl>
+          <p>Top row: <b>congruent</b>. Bottom row: <b>supplementary</b>.</p></article>
+      </div>
+
+      <h3 class="sub-h">Every pair on one page</h3>
+      <div class="tbl-scroll">
+        <table class="sum">
+          <thead><tr><th>Pair</th><th>Where the angles are</th><th>With parallel lines</th><th>Reason: lines <span class="op">∥</span> → angles</th><th>Reason: angles → lines <span class="op">∥</span></th></tr></thead>
+          <tbody>
+            <tr><td>Corresponding</td><td>Same spot at each intersection</td><td>Congruent</td><td>Corresponding Angles Postulate</td><td>Converse of the Corresponding Angles Postulate</td></tr>
+            <tr><td>Alternate interior</td><td>Between the lines, opposite sides</td><td>Congruent</td><td>Alternate Interior Angles Theorem</td><td>Converse of the Alternate Interior Angles Theorem</td></tr>
+            <tr><td>Alternate exterior</td><td>Outside the lines, opposite sides</td><td>Congruent</td><td>Alternate Exterior Angles Theorem</td><td>Converse of the Alternate Exterior Angles Theorem</td></tr>
+            <tr><td>Same-side interior</td><td>Between the lines, same side</td><td>Supplementary</td><td>Same-Side (Consecutive) Interior Angles Theorem</td><td>Converse of the Same-Side Interior Angles Theorem</td></tr>
+            <tr><td>Same-side exterior</td><td>Outside the lines, same side</td><td>Supplementary</td><td>Same-Side (Consecutive) Exterior Angles Theorem</td><td>Converse of the Same-Side Exterior Angles Theorem</td></tr>
+            <tr><td>Vertical</td><td>Across from each other, same intersection</td><td>Congruent <span class="always">(always)</span></td><td>Vertical Angles Theorem</td><td class="always">Can't prove lines parallel</td></tr>
+            <tr><td>Linear pair</td><td>Side by side, same intersection</td><td>Supplementary <span class="always">(always)</span></td><td>Linear Pair Postulate</td><td class="always">Can't prove lines parallel</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-h">Kinds of lines</h3>
+      <div class="kinds">
+        <div class="kind"><svg class="geo" viewBox="0 0 220 110" role="img" aria-label="Two parallel lines"><path class="ln" d="M16 36H204M16 76H204"/><path class="chev" d="M100 31 106 36 100 41M100 71 106 76 100 81"/></svg><h4>Parallel</h4><p>In the same plane and never meet. Written <span class="sym"><i class="v">ℓ</i> <span class="op">∥</span> <i class="v">m</i></span>.</p></div>
+        <div class="kind"><svg class="geo" viewBox="0 0 220 110" role="img" aria-label="Two perpendicular lines"><path class="ln" d="M20 58H200M110 8V104"/><path class="sq" d="M110 46H122V58"/></svg><h4>Perpendicular</h4><p>Meet at a right angle (90°). Written <span class="sym"><i class="v">a</i> <span class="op">⊥</span> <i class="v">b</i></span>. The small square marks the right angle.</p></div>
+        <div class="kind"><svg class="geo" viewBox="0 0 220 110" role="img" aria-label="Two intersecting lines"><path class="ln" d="M20 84 200 26M40 14 182 100"/></svg><h4>Intersecting</h4><p>Cross at exactly one point, making two pairs of vertical angles.</p></div>
+        <div class="kind"><svg class="geo" viewBox="0 0 220 110" role="img" aria-label="A box with two skew edges highlighted"><path class="ln faint" d="M70 28 120 28 120 78M70 28 70 78 120 78M70 78 40 98"/><path class="ln" d="M40 48 90 48 90 98 40 98ZM90 48 120 28M90 98 120 78M40 48 70 28"/><path class="ln hline" d="M40 48H90M120 28V78"/></svg><h4>Skew</h4><p>Not in the same plane, and never meet. Like the two highlighted edges of a box.</p></div>
+      </div>
+      <div class="facts2">
+        <div><b class="t">Perpendicular Transversal Theorem</b><p>If a line is perpendicular to one of two parallel lines, it is perpendicular to the other one too.</p></div>
+        <div><b class="t">Transitive Property of Parallel Lines</b><p>If <span class="sym"><i class="v">a</i> <span class="op">∥</span> <i class="v">b</i></span> and <span class="sym"><i class="v">b</i> <span class="op">∥</span> <i class="v">c</i></span>, then <span class="sym"><i class="v">a</i> <span class="op">∥</span> <i class="v">c</i></span>.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="solve">
+      <div class="sec-head">
+        <p class="kicker">Algebra with angles</p>
+        <h2>Solving for <i class="v">x</i></h2>
+        <p>Most problems give two angles as expressions like (5<i class="v">x</i> + 14)°. The angle pair tells you which equation to write.</p>
+      </div>
+      <ol class="steps4">
+        <li><b>Name the pair</b><span>Corresponding? Same-side interior? Find where the two angles are.</span></li>
+        <li><b>Pick the equation</b><span>Congruent pair: set them <b>equal</b>. Supplementary pair: <b>add them</b> and set the sum to 180.</span></li>
+        <li><b>Solve for <i class="v">x</i></b><span>Get the <i class="v">x</i> terms on one side and the numbers on the other.</span></li>
+        <li><b>Answer the question</b><span>If it asks for an angle, plug <i class="v">x</i> back in. Then check: acute angles should be under 90°.</span></li>
+      </ol>
+
+      <div class="examples">
+        <div class="ex"><div class="plate"><svg class="geo tfig" viewBox="0 0 440 290" role="img" aria-label="Alternate interior angles labeled 3x plus 17 and 5x minus 9"><path class="w mk" d="M253.7 95L234.7 95A19 19 0 0 0 243.1 110.8Z"/><path class="w mk" d="M186.3 195L205.3 195A19 19 0 0 0 196.9 179.2Z"/><path class="ln" d="M16 95L424 95"/><path class="ah" d="M10 95L20 99.4L20 90.6Z"/><path class="ah" d="M430 95L420 90.6L420 99.4Z"/><path class="chev" d="M60 90L66 95L60 100"/><path class="ln" d="M16 195L424 195"/><path class="ah" d="M10 195L20 199.4L20 190.6Z"/><path class="ah" d="M430 195L420 190.6L420 199.4Z"/><path class="chev" d="M60 190L66 195L60 200"/><path class="ln tr" d="M132.3 275L307.7 15"/><path class="ah" d="M128.9 280L138.2 274.2L130.9 269.2Z"/><path class="ah" d="M311.1 10L301.8 15.8L309.1 20.8Z"/><path class="arc mk" d="M234.7 95A19 19 0 0 0 243.1 110.8"/><path class="arc mk" d="M205.3 195A19 19 0 0 0 196.9 179.2"/><text class="lname" x="424" y="83" text-anchor="middle">ℓ</text><text class="lname" x="424" y="183" text-anchor="middle">m</text><text class="lname" x="316" y="27.8" text-anchor="middle">t</text><text class="expr" x="217.5" y="114.2" text-anchor="end">(3x + 17)°</text><text class="expr" x="222.5" y="175.8" text-anchor="start">(5x − 9)°</text></svg></div>
+          <div class="ex-body"><p class="kicker">Example 1 · congruent pair</p><h3>Alternate interior angles</h3>
+            <p class="prob">Lines <i class="v">ℓ</i> and <i class="v">m</i> are parallel. Find <i class="v">x</i> and the measure of each angle.</p>
+            <ol class="work"><li>The angles are between the lines, on opposite sides of <i class="v">t</i>: <b>alternate interior</b>, so they're congruent.</li>
+              <li>Set them equal: 3<i class="v">x</i> + 17 = 5<i class="v">x</i> − 9</li>
+              <li>Subtract 3<i class="v">x</i> from both sides, then add 9: 26 = 2<i class="v">x</i>, so <i class="v">x</i> = 13.</li>
+              <li>Plug in: 3(13) + 17 = 56°. Check the other one: 5(13) − 9 = 56°. ✓</li></ol>
+            <p class="ans"><i class="v">x</i> = 13, and both angles are 56°</p></div></div>
+
+        <div class="ex"><div class="plate"><svg class="geo tfig" viewBox="0 0 440 290" role="img" aria-label="Same-side interior angles labeled 4x plus 12 and 2x plus 6"><path class="w mk" d="M248.9 95L239.4 111.5A19 19 0 0 0 267.9 95Z"/><path class="w mk" d="M191.1 195L210.1 195A19 19 0 0 0 200.6 178.5Z"/><path class="ln" d="M16 95L424 95"/><path class="ah" d="M10 95L20 99.4L20 90.6Z"/><path class="ah" d="M430 95L420 90.6L420 99.4Z"/><path class="chev" d="M60 90L66 95L60 100"/><path class="ln" d="M16 195L424 195"/><path class="ah" d="M10 195L20 199.4L20 190.6Z"/><path class="ah" d="M430 195L420 190.6L420 199.4Z"/><path class="chev" d="M60 190L66 195L60 200"/><path class="ln tr" d="M145.1 274.8L294.9 15.2"/><path class="ah" d="M142.1 280L150.9 273.5L143.2 269.1Z"/><path class="ah" d="M297.9 10L289.1 16.5L296.8 20.9Z"/><path class="arc mk" d="M239.4 111.5A19 19 0 0 0 267.9 95"/><path class="arc mk" d="M210.1 195A19 19 0 0 0 200.6 178.5"/><text class="lname" x="424" y="83" text-anchor="middle">ℓ</text><text class="lname" x="424" y="183" text-anchor="middle">m</text><text class="lname" x="304.1" y="27.4" text-anchor="middle">t</text><text class="expr" x="269.4" y="130.5" text-anchor="start">(4x + 12)°</text><text class="expr" x="226.6" y="174.5" text-anchor="start">(2x + 6)°</text></svg></div>
+          <div class="ex-body"><p class="kicker">Example 2 · supplementary pair</p><h3>Same-side interior angles</h3>
+            <p class="prob">Lines <i class="v">ℓ</i> and <i class="v">m</i> are parallel. Find <i class="v">x</i> and both angles.</p>
+            <ol class="work"><li>Both angles are between the lines, on the same side of <i class="v">t</i>: <b>same-side interior</b>, so they add to 180°.</li>
+              <li>Add them: (4<i class="v">x</i> + 12) + (2<i class="v">x</i> + 6) = 180</li>
+              <li>Combine like terms: 6<i class="v">x</i> + 18 = 180, so 6<i class="v">x</i> = 162 and <i class="v">x</i> = 27.</li>
+              <li>Plug in: 4(27) + 12 = 120° and 2(27) + 6 = 60°. They add to 180°. ✓</li></ol>
+            <p class="ans"><i class="v">x</i> = 27, and the angles are 120° and 60°</p></div></div>
+
+        <div class="ex"><div class="plate"><svg class="geo tfig" viewBox="0 0 440 290" role="img" aria-label="Corresponding angles labeled 6x minus 2 and 4x plus 22, and angle 1 next to the lower one"><path class="w mk" d="M201.8 95L195.3 77.1A19 19 0 0 0 182.8 95Z"/><path class="w mk" d="M238.2 195L231.7 177.1A19 19 0 0 0 219.2 195Z"/><path class="w mk" d="M238.2 195L257.2 195A19 19 0 0 0 231.7 177.1Z"/><path class="ln" d="M16 95L424 95"/><path class="ah" d="M10 95L20 99.4L20 90.6Z"/><path class="ah" d="M430 95L420 90.6L420 99.4Z"/><path class="chev" d="M60 90L66 95L60 100"/><path class="ln" d="M16 195L424 195"/><path class="ah" d="M10 195L20 199.4L20 190.6Z"/><path class="ah" d="M430 195L420 190.6L420 199.4Z"/><path class="chev" d="M60 190L66 195L60 200"/><path class="ln tr" d="M267.1 274.4L172.9 15.6"/><path class="ah" d="M269.1 280L269.9 269.1L261.6 272.1Z"/><path class="ah" d="M170.9 10L170.1 20.9L178.4 17.9Z"/><path class="arc mk" d="M195.3 77.1A19 19 0 0 0 182.8 95"/><path class="arc mk" d="M231.7 177.1A19 19 0 0 0 219.2 195"/><path class="arc mk" d="M257.2 195A19 19 0 0 0 231.7 177.1"/><text class="lname" x="424" y="83" text-anchor="middle">ℓ</text><text class="lname" x="424" y="183" text-anchor="middle">m</text><text class="lname" x="161.8" y="26.1" text-anchor="middle">t</text><text class="expr" x="168.2" y="71.5" text-anchor="end">(6x − 2)°</text><text class="expr" x="204.6" y="171.5" text-anchor="end">(4x + 22)°</text><text class="num" x="254.8" y="171.2">1</text></svg></div>
+          <div class="ex-body"><p class="kicker">Example 3 · find a different angle</p><h3>Corresponding angles, then a linear pair</h3>
+            <p class="prob">Lines <i class="v">ℓ</i> and <i class="v">m</i> are parallel. Find m<span class="op">∠</span>1.</p>
+            <ol class="work"><li>The two expressions are in the same spot (upper-left) at each intersection: <b>corresponding</b>, so they're equal.</li>
+              <li>6<i class="v">x</i> − 2 = 4<i class="v">x</i> + 22, so 2<i class="v">x</i> = 24 and <i class="v">x</i> = 12.</li>
+              <li>Those angles are 6(12) − 2 = 70°.</li>
+              <li><span class="op">∠</span>1 makes a <b>linear pair</b> with the 70° angle next to it, so m<span class="op">∠</span>1 = 180° − 70° = 110°.</li></ol>
+            <p class="ans">m<span class="op">∠</span>1 = 110° (not 70°: always answer what was asked)</p></div></div>
+
+        <div class="ex"><div class="plate"><svg class="geo tfig" viewBox="0 0 440 230" role="img" aria-label="Two crossing lines with vertical angles labeled 7x minus 4 and 5x plus 12"><path class="w mk" d="M220 115L239 115A19 19 0 0 0 231.7 100Z"/><path class="w mk" d="M220 115L201 115A19 19 0 0 0 208.3 130Z"/><path class="ln" d="M16 115L424 115"/><path class="ah" d="M10 115L20 119.4L20 110.6Z"/><path class="ah" d="M430 115L420 110.6L420 119.4Z"/><path class="ln tr" d="M141.7 215.3L298.3 14.7"/><path class="ah" d="M138 220L147.6 214.8L140.7 209.4Z"/><path class="ah" d="M302 10L292.4 15.2L299.3 20.6Z"/><path class="arc mk" d="M239 115A19 19 0 0 0 231.7 100"/><path class="arc mk" d="M201 115A19 19 0 0 0 208.3 130"/><text class="lname" x="305.7" y="28.1" text-anchor="middle">t</text><text class="expr" x="256.9" y="97" text-anchor="start">(7x − 4)°</text><text class="expr" x="183.1" y="133" text-anchor="end">(5x + 12)°</text></svg></div>
+          <div class="ex-body"><p class="kicker">Example 4 · two crossing lines</p><h3>Vertical angles</h3>
+            <p class="prob">Find <i class="v">x</i>. (No parallel lines needed: vertical angles are always equal.)</p>
+            <ol class="work"><li>The angles are across from each other at the same point: <b>vertical</b>, so they're congruent.</li>
+              <li>7<i class="v">x</i> − 4 = 5<i class="v">x</i> + 12, so 2<i class="v">x</i> = 16 and <i class="v">x</i> = 8.</li>
+              <li>Each angle is 7(8) − 4 = 52°.</li></ol>
+            <p class="ans"><i class="v">x</i> = 8 (each angle is 52°)</p></div></div>
+
+        <div class="ex"><div class="plate"><svg class="geo bfig" viewBox="0 0 440 240" role="img" aria-label="An angle split in two by a ray"><path class="w mk" d="M70 200L110 200A40 40 0 0 0 104.3 179.4Z"/><path class="w mk" d="M70 200L111.1 175.3A48 48 0 0 0 92.5 157.6Z"/><path class="ln" d="M70 200L160.4 30"/><path class="ln" d="M70 200L318.6 50.6"/><path class="ln" d="M70 200L360 200"/><circle class="pt" cx="70" cy="200" r="2.6"/><circle class="pt" cx="160.4" cy="30" r="2.6"/><circle class="pt" cx="318.6" cy="50.6" r="2.6"/><circle class="pt" cx="360" cy="200" r="2.6"/><path class="arc mk" d="M110 200A40 40 0 0 0 104.3 179.4"/><path class="arc mk" d="M111.1 175.3A48 48 0 0 0 92.5 157.6"/><text class="expr" x="224.2" y="157.2" text-anchor="middle">(5x − 14)°</text><text class="expr" x="180.1" y="83.9" text-anchor="middle">(3x + 4)°</text><text class="pname" x="66" y="218" text-anchor="middle">B</text><text class="pname" x="148.4" y="24" text-anchor="middle">A</text><text class="pname" x="331.6" y="46.6" text-anchor="middle">D</text><text class="pname" x="366" y="218" text-anchor="middle">C</text></svg></div>
+          <div class="ex-body"><p class="kicker">Example 5 · angle bisector</p><h3>A ray that splits an angle in half</h3>
+            <p class="prob"><span class="ray">BD</span> bisects <span class="op">∠</span>ABC. Find m<span class="op">∠</span>ABC.</p>
+            <ol class="work"><li>A <b>bisector</b> makes two congruent angles: 3<i class="v">x</i> + 4 = 5<i class="v">x</i> − 14.</li>
+              <li>18 = 2<i class="v">x</i>, so <i class="v">x</i> = 9.</li>
+              <li>Each half is 3(9) + 4 = 31°.</li>
+              <li>The whole angle is twice that: 2 × 31° = 62°.</li></ol>
+            <p class="ans">m<span class="op">∠</span>ABC = 62°</p></div></div>
+      </div>
+
+      <div class="callout warn" style="margin-top:18px">
+        <b class="t">Common mistakes</b>
+        <ul>
+          <li><b>Using the wrong equation.</b> Setting supplementary angles equal, or adding congruent angles to 180. Name the pair first.</li>
+          <li><b>Stopping at <i class="v">x</i>.</b> If the question asks for an angle, plug <i class="v">x</i> back in.</li>
+          <li><b>Answering the wrong angle.</b> If the angle asked for isn't one of the expressions, use a vertical angle or linear pair to get to it (Example 3).</li>
+          <li><b>Not checking.</b> Plug <i class="v">x</i> into both expressions. Congruent pairs should match. Supplementary pairs should add to 180°.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="proofs">
+      <div class="sec-head">
+        <p class="kicker">Reasoning</p>
+        <h2>Two-column proofs</h2>
+        <p>A proof is a chain of <b>statements</b>, each backed by a <b>reason</b>. Start with the <b>Given</b>. End with what you need to <b>Prove</b>. Every step in between needs a definition, property, postulate, or theorem.</p>
+      </div>
+
+      <div class="two">
+        <div><b class="t">You know the lines are parallel</b><h4>Use the theorem</h4><p>Lines <span class="op">∥</span> → angles. Example: “<i class="v">ℓ</i> <span class="op">∥</span> <i class="v">m</i>, so <span class="op">∠</span>3 <span class="op">≅</span> <span class="op">∠</span>6” uses the <b>Alternate Interior Angles Theorem</b>.</p></div>
+        <div><b class="t">You want to prove lines are parallel</b><h4>Use the converse</h4><p>Angles → lines <span class="op">∥</span>. Example: “<span class="op">∠</span>3 <span class="op">≅</span> <span class="op">∠</span>6, so <i class="v">ℓ</i> <span class="op">∥</span> <i class="v">m</i>” uses the <b>Converse of the Alternate Interior Angles Theorem</b>.</p></div>
+      </div>
+
+      <h3 class="sub-h">Reasons you'll use</h3>
+      <div class="reasons">
+        <div class="rbox"><h4>Properties of equality</h4><dl>
+          <div><dt>Addition / Subtraction / Multiplication / Division</dt><dd>Do the same thing to both sides. If <i class="v">x</i> + 9 = 20, then <i class="v">x</i> = 11 (Subtraction).</dd></div>
+          <div><dt>Substitution</dt><dd>Swap in something equal. If m<span class="op">∠</span>1 = 50° and m<span class="op">∠</span>1 + m<span class="op">∠</span>2 = 180°, then 50° + m<span class="op">∠</span>2 = 180°.</dd></div>
+          <div><dt>Distributive</dt><dd>2(<i class="v">x</i> + 5) = 2<i class="v">x</i> + 10</dd></div>
+          <div><dt>Reflexive · Symmetric · Transitive</dt><dd><i class="v">a</i> = <i class="v">a</i> · If <i class="v">a</i> = <i class="v">b</i>, then <i class="v">b</i> = <i class="v">a</i> · If <i class="v">a</i> = <i class="v">b</i> and <i class="v">b</i> = <i class="v">c</i>, then <i class="v">a</i> = <i class="v">c</i>.</dd></div>
+        </dl></div>
+        <div class="rbox"><h4>Properties of congruence</h4><dl>
+          <div><dt>Reflexive</dt><dd><span class="op">∠</span>A <span class="op">≅</span> <span class="op">∠</span>A</dd></div>
+          <div><dt>Symmetric</dt><dd>If <span class="op">∠</span>A <span class="op">≅</span> <span class="op">∠</span>B, then <span class="op">∠</span>B <span class="op">≅</span> <span class="op">∠</span>A.</dd></div>
+          <div><dt>Transitive</dt><dd>If <span class="op">∠</span>A <span class="op">≅</span> <span class="op">∠</span>B and <span class="op">∠</span>B <span class="op">≅</span> <span class="op">∠</span>C, then <span class="op">∠</span>A <span class="op">≅</span> <span class="op">∠</span>C. This is how you link two congruences together.</dd></div>
+        </dl></div>
+        <div class="rbox"><h4>Definitions (they work both ways)</h4><dl>
+          <div><dt>Congruent angles</dt><dd><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2 means m<span class="op">∠</span>1 = m<span class="op">∠</span>2. Use it to switch between <span class="op">≅</span> and =.</dd></div>
+          <div><dt>Angle bisector</dt><dd>A ray that splits an angle into two congruent angles.</dd></div>
+          <div><dt>Supplementary / Complementary</dt><dd>Two angles that add to 180° / to 90°.</dd></div>
+          <div><dt>Right angle · Perpendicular lines</dt><dd>A right angle measures 90°. Perpendicular lines meet at right angles.</dd></div>
+        </dl></div>
+        <div class="rbox"><h4>Postulates &amp; theorems</h4><dl>
+          <div><dt>Angle Addition Postulate</dt><dd>If D is inside <span class="op">∠</span>ABC, then m<span class="op">∠</span>ABD + m<span class="op">∠</span>DBC = m<span class="op">∠</span>ABC.</dd></div>
+          <div><dt>Linear Pair Postulate</dt><dd>A linear pair is supplementary. (Some books: Supplement Theorem.)</dd></div>
+          <div><dt>Vertical Angles Theorem</dt><dd>Vertical angles are congruent.</dd></div>
+          <div><dt>The parallel-line angle theorems and their converses</dt><dd>See the table in <a href="#pairs">Angle pairs</a>.</dd></div>
+        </dl></div>
+      </div>
+
+      <div class="callout" style="margin-top:14px">
+        <b class="t">Proof tips</b>
+        <ul>
+          <li>Write the <b>Given</b> first, one fact per line, with the reason “Given.”</li>
+          <li><b>Mark the diagram.</b> Shade the angles you know are equal. The proof usually connects them in a chain.</li>
+          <li><b>Work backwards</b> from the Prove. To prove lines parallel, you need a congruent (or supplementary) angle pair, so find which pair you can reach.</li>
+          <li>To combine “<span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>3” and “<span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2” into “<span class="op">∠</span>3 <span class="op">≅</span> <span class="op">∠</span>2,” use the <b>Transitive Property</b> (or Substitution).</li>
+        </ul>
+      </div>
+
+      <h3 class="sub-h">Worked proofs</h3>
+      <p class="lead">These match the kinds of proofs in this unit. Try each step before you reveal it.</p>
+
+      <div class="proof" data-proof>
+        <div class="proof-top">
+          <div><p class="kicker">Proof 1 · proving lines are parallel</p><h3>Two facts, then a converse</h3>
+            <div class="gp"><p><b>Given</b><i class="v">p</i> <span class="op">∥</span> <i class="v">q</i>, <span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2</p><p><b>Prove</b><i class="v">r</i> <span class="op">∥</span> <i class="v">s</i></p></div></div>
+          <div class="plate"><svg class="geo pfig" viewBox="0 0 440 270" role="img" aria-label="Lines r and s crossed by parallel lines p and q, with angles 1, 2, and 3 marked"><path class="w hl" d="M170 100L161.1 116.8A19 19 0 0 0 189 100Z"/><path class="w mk" d="M270 100L261.1 116.8A19 19 0 0 0 289 100Z"/><path class="w hl" d="M222.1 190L231.1 173.2A19 19 0 0 0 203.1 190Z"/><path class="ln" d="M16 100L424 100"/><path class="ah" d="M10 100L20 104.4L20 95.6Z"/><path class="ah" d="M430 100L420 95.6L420 104.4Z"/><path class="ln" d="M16 190L424 190"/><path class="ah" d="M10 190L20 194.4L20 185.6Z"/><path class="ah" d="M430 190L420 185.6L420 194.4Z"/><path class="ln" d="M87.7 254.7L215 15.3"/><path class="ah" d="M84.9 260L93.5 253.2L85.7 249.1Z"/><path class="ah" d="M217.9 10L209.3 16.8L217 20.9Z"/><path class="ln" d="M187.7 254.7L315 15.3"/><path class="ah" d="M184.9 260L193.5 253.2L185.7 249.1Z"/><path class="ah" d="M317.9 10L309.3 16.8L317 20.9Z"/><path class="chev" d="M100.8 219.4L108.1 216.5L109.7 224.1"/><path class="chev" d="M200.8 219.4L208.1 216.5L209.7 224.1"/><path class="arc hl" d="M161.1 116.8A19 19 0 0 0 189 100"/><path class="arc mk" d="M261.1 116.8A19 19 0 0 0 289 100"/><path class="arc hl" d="M231.1 173.2A19 19 0 0 0 203.1 190"/><text class="lname" x="422" y="86" text-anchor="middle">r</text><text class="lname" x="422" y="176" text-anchor="middle">s</text><text class="lname" x="201.7" y="10.5" text-anchor="middle">p</text><text class="lname" x="301.7" y="10.5" text-anchor="middle">q</text><text class="num on hl" x="184.9" y="124.9">1</text><text class="num" x="284.9" y="124.9">3</text><text class="num on hl" x="207.2" y="165.1">2</text></svg></div>
+        </div>
+        <div class="pf-scroll"><table class="pf"><thead><tr><th>#</th><th>Statements</th><th>Reasons</th></tr></thead><tbody>
+          <tr><td>1</td><td><span><i class="v">p</i> <span class="op">∥</span> <i class="v">q</i></span></td><td><span>Given</span></td></tr>
+          <tr><td>2</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>3</span></td><td><span>Corresponding Angles Postulate (<span class="op">∠</span>1 and <span class="op">∠</span>3 are in the same spot where <i class="v">r</i> crosses <i class="v">p</i> and <i class="v">q</i>)</span></td></tr>
+          <tr><td>3</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2</span></td><td><span>Given</span></td></tr>
+          <tr><td>4</td><td><span><span class="op">∠</span>3 <span class="op">≅</span> <span class="op">∠</span>2</span></td><td><span>Transitive Property of Congruence (steps 2 and 3)</span></td></tr>
+          <tr><td>5</td><td><span><i class="v">r</i> <span class="op">∥</span> <i class="v">s</i></span></td><td><span>Converse of the Alternate Interior Angles Theorem (<span class="op">∠</span>3 and <span class="op">∠</span>2 are alternate interior angles along <i class="v">q</i>)</span></td></tr>
+        </tbody></table></div>
+        <div class="btnrow"><button type="button" class="btn primary" data-act="next">Show step 1</button><button type="button" class="btn" data-act="all">Show the whole proof</button><button type="button" class="btn" data-act="reset" hidden>Start over</button></div>
+        <div class="why"><p><b>Why it works:</b> the given parallel lines get you a congruent pair (step 2). Chain it to the given pair (step 4), and you have a congruent pair that proves the <i>other</i> two lines are parallel.</p></div>
+      </div>
+
+      <div class="proof" data-proof>
+        <div class="proof-top">
+          <div><p class="kicker">Proof 2 · three parallel lines</p><h3>Linking two angle facts</h3>
+            <div class="gp"><p><b>Given</b><i class="v">a</i> <span class="op">∥</span> <i class="v">b</i>, <i class="v">b</i> <span class="op">∥</span> <i class="v">c</i></p><p><b>Prove</b><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>3</p></div></div>
+          <div class="plate"><svg class="geo pfig" viewBox="0 0 440 280" role="img" aria-label="Parallel lines a, b, and c crossed by line t, with angles 1, 2, and 3 marked"><path class="w hl" d="M130 140L149 140A19 19 0 0 0 122 122.8Z"/><path class="w mk" d="M240 140L221 140A19 19 0 0 0 248 157.2Z"/><path class="w hl" d="M350 140L331 140A19 19 0 0 0 358 157.2Z"/><path class="ln" d="M16 140L424 140"/><path class="ah" d="M10 140L20 144.4L20 135.6Z"/><path class="ah" d="M430 140L420 135.6L420 144.4Z"/><path class="ln" d="M188.1 264.6L71.9 15.4"/><path class="ah" d="M190.6 270L190.4 259.1L182.4 262.8Z"/><path class="ah" d="M69.4 10L69.6 20.9L77.6 17.2Z"/><path class="ln" d="M298.1 264.6L181.9 15.4"/><path class="ah" d="M300.6 270L300.4 259.1L292.4 262.8Z"/><path class="ah" d="M179.4 10L179.6 20.9L187.6 17.2Z"/><path class="ln" d="M408.1 264.6L291.9 15.4"/><path class="ah" d="M410.6 270L410.4 259.1L402.4 262.8Z"/><path class="ah" d="M289.4 10L289.6 20.9L297.6 17.2Z"/><path class="chev" d="M159.3 214.6L161.3 207.1L168.3 210.4"/><path class="chev" d="M269.3 214.6L271.3 207.1L278.3 210.4"/><path class="chev" d="M379.3 214.6L381.3 207.1L388.3 210.4"/><path class="arc hl" d="M149 140A19 19 0 0 0 122 122.8"/><path class="arc mk" d="M221 140A19 19 0 0 0 248 157.2"/><path class="arc hl" d="M331 140A19 19 0 0 0 358 157.2"/><text class="lname" x="422" y="126" text-anchor="middle">t</text><text class="lname" x="60.1" y="23.2" text-anchor="middle">a</text><text class="lname" x="170.1" y="23.2" text-anchor="middle">b</text><text class="lname" x="280.1" y="23.2" text-anchor="middle">c</text><text class="num on hl" x="145.6" y="115.5">1</text><text class="num" x="224.4" y="164.5">2</text><text class="num on hl" x="334.4" y="164.5">3</text></svg></div>
+        </div>
+        <div class="pf-scroll"><table class="pf"><thead><tr><th>#</th><th>Statements</th><th>Reasons</th></tr></thead><tbody>
+          <tr><td>1</td><td><span><i class="v">a</i> <span class="op">∥</span> <i class="v">b</i></span></td><td><span>Given</span></td></tr>
+          <tr><td>2</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2</span></td><td><span>Alternate Interior Angles Theorem (between <i class="v">a</i> and <i class="v">b</i>, opposite sides of <i class="v">t</i>)</span></td></tr>
+          <tr><td>3</td><td><span><i class="v">b</i> <span class="op">∥</span> <i class="v">c</i></span></td><td><span>Given</span></td></tr>
+          <tr><td>4</td><td><span><span class="op">∠</span>2 <span class="op">≅</span> <span class="op">∠</span>3</span></td><td><span>Corresponding Angles Postulate (same spot where <i class="v">t</i> crosses <i class="v">b</i> and <i class="v">c</i>)</span></td></tr>
+          <tr><td>5</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>3</span></td><td><span>Transitive Property of Congruence (steps 2 and 4)</span></td></tr>
+        </tbody></table></div>
+        <div class="btnrow"><button type="button" class="btn primary" data-act="next">Show step 1</button><button type="button" class="btn" data-act="all">Show the whole proof</button><button type="button" class="btn" data-act="reset" hidden>Start over</button></div>
+        <div class="why"><p><b>Another way:</b> <i class="v">a</i> <span class="op">∥</span> <i class="v">c</i> by the Transitive Property of Parallel Lines. Then <span class="op">∠</span>1 and <span class="op">∠</span>3 are alternate interior angles for <i class="v">a</i> and <i class="v">c</i>, so <span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>3.</p></div>
+      </div>
+
+      <div class="proof" data-proof>
+        <div class="proof-top">
+          <div><p class="kicker">Proof 3 · parallel segments and a bisector</p><h3>Using a bisector inside a triangle</h3>
+            <div class="gp"><p><b>Given</b><span class="seg">DE</span> <span class="op">∥</span> <span class="seg">KL</span>; <span class="ray">DE</span> bisects <span class="op">∠</span>KDJ</p><p><b>Prove</b><span class="op">∠</span>4 <span class="op">≅</span> <span class="op">∠</span>5</p></div></div>
+          <div class="plate"><svg class="geo pfig" viewBox="0 0 440 240" role="img" aria-label="Triangle JKL with D on side JL and E on side JK. Segment DE is parallel to KL. Angles 1 through 5 are marked."><path class="w hl2" d="M250 210L242 192.8A19 19 0 0 0 231 210Z"/><path class="w hl2" d="M250 210L262.2 195.4A19 19 0 0 0 242 192.8Z"/><path class="w hl" d="M400 210L392 192.8A19 19 0 0 0 381 210Z"/><path class="w hl" d="M346.4 95.1L332.3 111.9A22 22 0 0 0 355.7 115Z"/><path class="ln" d="M40 210L346.4 95.1"/><path class="ln" d="M346.4 95.1L400 210"/><path class="ln" d="M40 210L400 210"/><path class="ln" d="M250 210L218.7 143"/><path class="ln" d="M250 210L346.4 95.1"/><path class="chev" d="M230.7 180.4L232.7 172.9L239.7 176.2"/><path class="chev" d="M369.5 156.5L371.5 148.9L378.6 152.2"/><circle class="pt" cx="40" cy="210" r="2.6"/><circle class="pt" cx="346.4" cy="95.1" r="2.6"/><circle class="pt" cx="400" cy="210" r="2.6"/><circle class="pt" cx="250" cy="210" r="2.6"/><circle class="pt" cx="218.7" cy="143" r="2.6"/><path class="arc hl2" d="M242 192.8A19 19 0 0 0 231 210"/><path class="arc hl2" d="M262.2 195.4A19 19 0 0 0 242 192.8"/><path class="arc hl" d="M392 192.8A19 19 0 0 0 381 210"/><path class="arc hl" d="M332.3 111.9A22 22 0 0 0 355.7 115"/><text class="num on hl2" x="225.5" y="194.4">1</text><text class="num on hl2" x="253.8" y="181.2">2</text><text class="num" x="280.8" y="195.6">3</text><text class="num on hl" x="375.5" y="194.4">4</text><text class="num on hl" x="342.2" y="126.8">5</text><text class="pname" x="28" y="214" text-anchor="middle">J</text><text class="pname" x="348.4" y="80.1" text-anchor="middle">K</text><text class="pname" x="413" y="214" text-anchor="middle">L</text><text class="pname" x="250" y="227" text-anchor="middle">D</text><text class="pname" x="206.7" y="133" text-anchor="middle">E</text></svg></div>
+        </div>
+        <div class="pf-scroll"><table class="pf"><thead><tr><th>#</th><th>Statements</th><th>Reasons</th></tr></thead><tbody>
+          <tr><td>1</td><td><span><span class="seg">DE</span> <span class="op">∥</span> <span class="seg">KL</span></span></td><td><span>Given</span></td></tr>
+          <tr><td>2</td><td><span><span class="ray">DE</span> bisects <span class="op">∠</span>KDJ</span></td><td><span>Given</span></td></tr>
+          <tr><td>3</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>2</span></td><td><span>Definition of angle bisector</span></td></tr>
+          <tr><td>4</td><td><span><span class="op">∠</span>1 <span class="op">≅</span> <span class="op">∠</span>4</span></td><td><span>Corresponding Angles Postulate (side <span class="seg">JL</span> is a transversal for <span class="seg">DE</span> and <span class="seg">KL</span>)</span></td></tr>
+          <tr><td>5</td><td><span><span class="op">∠</span>2 <span class="op">≅</span> <span class="op">∠</span>5</span></td><td><span>Alternate Interior Angles Theorem (transversal <span class="seg">DK</span>)</span></td></tr>
+          <tr><td>6</td><td><span><span class="op">∠</span>4 <span class="op">≅</span> <span class="op">∠</span>5</span></td><td><span>Transitive Property of Congruence (steps 3, 4, and 5)</span></td></tr>
+        </tbody></table></div>
+        <div class="btnrow"><button type="button" class="btn primary" data-act="next">Show step 1</button><button type="button" class="btn" data-act="all">Show the whole proof</button><button type="button" class="btn" data-act="reset" hidden>Start over</button></div>
+        <div class="why"><p><b>Why it works:</b> the parallel segments connect <span class="op">∠</span>1 to <span class="op">∠</span>4 and <span class="op">∠</span>2 to <span class="op">∠</span>5, and the bisector connects <span class="op">∠</span>1 to <span class="op">∠</span>2. If a problem gives you the angle measures instead (like m<span class="op">∠</span>4 = m<span class="op">∠</span>5) and asks you to prove the bisector, use the same three connections in the other order, ending with “Definition of angle bisector.”</p>
+          <p>Some teachers want a separate line for “m<span class="op">∠</span>1 = m<span class="op">∠</span>2” (Definition of congruent angles) whenever you switch between <span class="op">≅</span> and =. Ask what yours expects.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="logic">
+      <div class="sec-head">
+        <p class="kicker">Reasoning</p>
+        <h2>Conditional statements &amp; logic</h2>
+        <p>A <b>conditional</b> is an if-then statement. The “if” part is the <b>hypothesis</b> (<i class="v">p</i>) and the “then” part is the <b>conclusion</b> (<i class="v">q</i>).</p>
+      </div>
+      <p class="cond">If <span class="p">it is raining</span>, then <span class="q">the ground is wet</span>.</p>
+      <div class="cond-key"><span><b><i class="v">p</i></b> = hypothesis</span><span><b><i class="v">q</i></b> = conclusion</span><span><b>→</b> “if… then”</span><span><b>~</b> “not”</span><span><b>↔</b> “if and only if”</span></div>
+
+      <h3 class="sub-h">The four forms</h3>
+      <div class="tbl-scroll">
+        <table class="sum forms">
+          <thead><tr><th>Name</th><th>Symbols</th><th>How to make it</th><th>Example</th><th>Same truth as the original?</th></tr></thead>
+          <tbody>
+            <tr><td>Conditional</td><td><i class="v">p</i> → <i class="v">q</i></td><td>The original</td><td>If it is raining, then the ground is wet.</td><td class="yes">It is the original</td></tr>
+            <tr><td>Converse</td><td><i class="v">q</i> → <i class="v">p</i></td><td><b>Switch</b> the two parts</td><td>If the ground is wet, then it is raining.</td><td class="no">Not always (a sprinkler could make it wet)</td></tr>
+            <tr><td>Inverse</td><td>~<i class="v">p</i> → ~<i class="v">q</i></td><td><b>Negate</b> both parts</td><td>If it is not raining, then the ground is not wet.</td><td class="no">Not always</td></tr>
+            <tr><td>Contrapositive</td><td>~<i class="v">q</i> → ~<i class="v">p</i></td><td><b>Switch and negate</b></td><td>If the ground is not wet, then it is not raining.</td><td class="yes">Always</td></tr>
+            <tr><td>Biconditional</td><td><i class="v">p</i> ↔ <i class="v">q</i></td><td>Join with “if and only if”</td><td>It is raining if and only if the ground is wet.</td><td class="no">Only if the conditional and converse are both true</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="equiv">
+        <div><b>Conditional = Contrapositive</b><span>Always the same truth value (logically equivalent).</span></div>
+        <div><b>Converse = Inverse</b><span>Always the same truth value as each other.</span></div>
+      </div>
+
+      <div class="two" style="margin-top:14px">
+        <div><b class="t">Biconditional</b><h4>Only when it works both ways</h4><p>“An angle is a right angle <b>if and only if</b> it measures 90°” is true: both “if right, then 90°” and “if 90°, then right” are true.</p><p>“Two angles are congruent if and only if they are vertical” is false: congruent angles don't have to be vertical.</p></div>
+        <div><b class="t">Counterexample</b><h4>One example that breaks it</h4><p>To show a conditional is false, find a case where the hypothesis is true but the conclusion is false.</p><p>“If two angles are congruent, then they are vertical angles.” Counterexample: alternate interior angles with parallel lines are congruent, but not vertical.</p></div>
+      </div>
+
+      <h3 class="sub-h">Laws of logic (deductive reasoning)</h3>
+      <div class="laws">
+        <div class="law"><h4>Law of Detachment</h4><p class="form">If <i class="v">p</i> → <i class="v">q</i> is true and <i class="v">p</i> is true, then <i class="v">q</i> is true.</p>
+          <div class="arg"><p>If a figure is a square, then it has four right angles.</p><p>ABCD is a square.</p><p class="then">∴ ABCD has four right angles.</p></div></div>
+        <div class="law"><h4>Law of Syllogism</h4><p class="form">If <i class="v">p</i> → <i class="v">q</i> and <i class="v">q</i> → <i class="v">r</i>, then <i class="v">p</i> → <i class="v">r</i>.</p>
+          <div class="arg"><p>If it snows, then school is canceled.</p><p>If school is canceled, then I sleep in.</p><p class="then">∴ If it snows, then I sleep in.</p></div></div>
+      </div>
+      <h3 class="sub-h" style="font-size:1.25rem;margin-top:26px">Invalid arguments to watch for</h3>
+      <div class="bad-args">
+        <div><h4>Starting from the conclusion</h4><div class="arg"><p>If you study, then you pass.</p><p>Jordan passed.</p><p class="then">∴ Jordan studied.</p></div><p><b>Invalid.</b> Jordan could have passed another way. Knowing <i class="v">q</i> doesn't tell you <i class="v">p</i>.</p></div>
+        <div><h4>Denying the hypothesis</h4><div class="arg"><p>If you study, then you pass.</p><p>Jordan didn't study.</p><p class="then">∴ Jordan didn't pass.</p></div><p><b>Invalid.</b> That's using the inverse, which isn't guaranteed.</p></div>
+        <div><h4>A chain that doesn't link</h4><div class="arg"><p>If Sam practices, then he makes the team.</p><p>If Ava practices, then she makes the team.</p><p class="then">∴ If Sam practices, then Ava makes the team.</p></div><p><b>Invalid.</b> For syllogism, the conclusion of the first statement must be the hypothesis of the second.</p></div>
+      </div>
+
+      <div class="two" style="margin-top:14px">
+        <div><b class="t">Inductive reasoning</b><p>Look at examples or a pattern and make a <b>conjecture</b> (an educated guess). It could be wrong: one counterexample disproves it.</p></div>
+        <div><b class="t">Deductive reasoning</b><p>Use facts, definitions, and the laws of logic to reach a conclusion that <b>must</b> be true. Proofs use deductive reasoning.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="vocab">
+      <div class="sec-head">
+        <p class="kicker">Glossary</p>
+        <h2>Key words</h2>
+      </div>
+      <dl class="vocab">
+        <div><dt>Transversal</dt><dd>A line that crosses two or more lines at different points.</dd></div>
+        <div><dt>Parallel lines</dt><dd>Lines in the same plane that never intersect (<span class="op">∥</span>).</dd></div>
+        <div><dt>Perpendicular lines</dt><dd>Lines that meet at right angles (<span class="op">⊥</span>).</dd></div>
+        <div><dt>Skew lines</dt><dd>Lines that aren't in the same plane and never intersect.</dd></div>
+        <div><dt>Interior angles</dt><dd>Angles between the two lines a transversal crosses.</dd></div>
+        <div><dt>Exterior angles</dt><dd>Angles outside the two lines.</dd></div>
+        <div><dt>Corresponding angles</dt><dd>Same spot at each intersection. Congruent if the lines are parallel.</dd></div>
+        <div><dt>Alternate interior angles</dt><dd>Between the lines, opposite sides of the transversal. Congruent if the lines are parallel.</dd></div>
+        <div><dt>Alternate exterior angles</dt><dd>Outside the lines, opposite sides. Congruent if the lines are parallel.</dd></div>
+        <div><dt>Same-side interior angles</dt><dd>Between the lines, same side (consecutive interior). Supplementary if the lines are parallel.</dd></div>
+        <div><dt>Same-side exterior angles</dt><dd>Outside the lines, same side. Supplementary if the lines are parallel.</dd></div>
+        <div><dt>Vertical angles</dt><dd>Opposite angles formed by two crossing lines. Always congruent.</dd></div>
+        <div><dt>Linear pair</dt><dd>Two adjacent angles that form a straight line. Always supplementary.</dd></div>
+        <div><dt>Congruent (<span class="op">≅</span>)</dt><dd>Exactly the same size. Congruent angles have equal measures.</dd></div>
+        <div><dt>Supplementary</dt><dd>Two angles that add up to 180°.</dd></div>
+        <div><dt>Complementary</dt><dd>Two angles that add up to 90°.</dd></div>
+        <div><dt>Angle bisector</dt><dd>A ray that divides an angle into two congruent angles.</dd></div>
+        <div><dt>Conditional</dt><dd>An if-then statement, <i class="v">p</i> → <i class="v">q</i>.</dd></div>
+        <div><dt>Hypothesis / Conclusion</dt><dd>The “if” part (<i class="v">p</i>) / the “then” part (<i class="v">q</i>).</dd></div>
+        <div><dt>Converse</dt><dd><i class="v">q</i> → <i class="v">p</i>: switch the parts.</dd></div>
+        <div><dt>Inverse</dt><dd>~<i class="v">p</i> → ~<i class="v">q</i>: negate both parts.</dd></div>
+        <div><dt>Contrapositive</dt><dd>~<i class="v">q</i> → ~<i class="v">p</i>: switch and negate. Always as true as the original.</dd></div>
+        <div><dt>Biconditional</dt><dd><i class="v">p</i> ↔ <i class="v">q</i>, “if and only if.” True only when it works both ways.</dd></div>
+        <div><dt>Negation</dt><dd>The opposite of a statement (~<i class="v">p</i>, “not <i class="v">p</i>”).</dd></div>
+        <div><dt>Counterexample</dt><dd>An example where the hypothesis is true but the conclusion is false.</dd></div>
+        <div><dt>Law of Detachment</dt><dd><i class="v">p</i> → <i class="v">q</i> and <i class="v">p</i>, so <i class="v">q</i>.</dd></div>
+        <div><dt>Law of Syllogism</dt><dd><i class="v">p</i> → <i class="v">q</i> and <i class="v">q</i> → <i class="v">r</i>, so <i class="v">p</i> → <i class="v">r</i>.</dd></div>
+        <div><dt>Postulate</dt><dd>A statement accepted as true without proof.</dd></div>
+        <div><dt>Theorem</dt><dd>A statement that has been proven.</dd></div>
+      </dl>
+    </section>
+  </div>
+</section>
+
+<!-- ============================================================ PRACTICE -->
+<section id="practice" role="tabpanel" aria-labelledby="tab-practice" hidden>
+  <div class="wrap">
+    <div class="qz-card" id="qz-start">
+      <div style="display:grid;gap:8px">
+        <h2>Practice test</h2>
+        <p class="qz-sub">Questions on angle pairs, solving for <i class="v">x</i>, proofs, and logic. For solving questions, you type the number. The diagrams and numbers change every time you take it, and you see the answer and the steps after each question.</p>
+      </div>
+      <fieldset>
+        <legend>How many questions</legend>
+        <div class="pills">
+          <label class="pill"><input type="radio" name="qlen" value="15" checked><span>15</span></label>
+          <label class="pill"><input type="radio" name="qlen" value="30"><span>30</span></label>
+          <label class="pill"><input type="radio" name="qlen" value="all"><span>All <small id="all-count"></small></span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Topics</legend>
+        <div class="pills" id="topic-pills"></div>
+      </fieldset>
+      <div class="btnrow">
+        <button type="button" class="btn primary" id="qz-go">Start test</button>
+        <span class="small-note" id="qz-pool"></span>
+      </div>
+    </div>
+
+    <div class="qz-card" id="qz-run" hidden>
+      <div class="qz-top">
+        <div class="qz-progress"><span id="qz-count">Question 1 of 15</span><span id="qz-right">0 correct</span></div>
+        <div class="qz-bar"><span id="qz-bar"></span></div>
+      </div>
+      <p class="qz-topic" id="qz-topic"></p>
+      <h2 class="qz-q" id="qz-q"></h2>
+      <div class="qz-fig" id="qz-fig"></div>
+      <div class="opts" id="qz-opts"></div>
+      <div id="qz-fb" hidden></div>
+      <div class="btnrow">
+        <button type="button" class="btn primary" id="qz-next" hidden>Next question</button>
+        <span class="kbd" id="qz-kbd"></span>
+      </div>
+    </div>
+
+    <div class="qz-card" id="qz-done" hidden>
+      <div class="score">
+        <p class="score-num" id="sc-num">0<small>/0</small></p>
+        <div style="display:grid;gap:10px">
+          <h2 id="sc-title" style="font-size:clamp(1.7rem, 4vw, 2.3rem)">Done</h2>
+          <div class="tally" id="sc-tally"></div>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button type="button" class="btn primary" id="sc-missed">Retake the ones I missed</button>
+        <button type="button" class="btn" id="sc-new">New test</button>
+      </div>
+      <p class="small-note" id="sc-note">Retakes use new numbers for the solving questions.</p>
+      <div class="review" id="sc-review"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+/* Geometry drawing + question generators. No DOM: the build script runs this to draw the
+   Learn figures ahead of time, and the page runs it for the angle explorer and the practice test. */
+var GEO = (function () {
+  "use strict";
+
+  /* ---------------- drawing primitives (math angles: degrees counterclockwise from east) ---------------- */
+  function rad(d) { return d * Math.PI / 180; }
+  function f(n) { return String(Math.round(n * 10) / 10); }
+  function at(c, deg, r) { return [c[0] + r * Math.cos(rad(deg)), c[1] - r * Math.sin(rad(deg))]; }
+  function P(p) { return f(p[0]) + " " + f(p[1]); }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function norm(a) { a %= 360; return a < 0 ? a + 360 : a; }
+  function dirOf(a, b) { return norm(Math.atan2(-(b[1] - a[1]), b[0] - a[0]) * 180 / Math.PI); }
+
+  function arrowhead(e, deg) {
+    var b = at(e, deg + 180, 10), l = at(b, deg + 90, 4.4), r = at(b, deg - 90, 4.4);
+    return '<path class="ah" d="M' + P(e) + "L" + P(l) + "L" + P(r) + 'Z"/>';
+  }
+  // the part of the line through p (direction deg) inside box [x0, y0, x1, y1], arrowheads on both ends
+  function fullLine(p, deg, box, cls) {
+    var dx = Math.cos(rad(deg)), dy = -Math.sin(rad(deg)), t0 = -1e9, t1 = 1e9;
+    [[dx, p[0], box[0], box[2]], [dy, p[1], box[1], box[3]]].forEach(function (s) {
+      if (Math.abs(s[0]) < 1e-9) return;
+      var a = (s[2] - s[1]) / s[0], b = (s[3] - s[1]) / s[0];
+      t0 = Math.max(t0, Math.min(a, b)); t1 = Math.min(t1, Math.max(a, b));
+    });
+    var A = [p[0] + dx * t0, p[1] + dy * t0], B = [p[0] + dx * t1, p[1] + dy * t1];
+    var A2 = [p[0] + dx * (t0 + 6), p[1] + dy * (t0 + 6)], B2 = [p[0] + dx * (t1 - 6), p[1] + dy * (t1 - 6)];
+    return { svg: '<path class="' + (cls || "ln") + '" d="M' + P(A2) + "L" + P(B2) + '"/>' + arrowhead(A, deg + 180) + arrowhead(B, deg), a: A, b: B };
+  }
+  function seg(a, b, cls) { return '<path class="' + (cls || "ln") + '" d="M' + P(a) + "L" + P(b) + '"/>'; }
+  // parallel marks: n small chevrons on a line at p, pointing along deg
+  function chevrons(p, deg, n) {
+    var out = "";
+    for (var i = 0; i < n; i++) {
+      var tip = at(p, deg, 4 + i * 7), b = at(tip, deg + 180, 6);
+      out += '<path class="chev" d="M' + P(at(b, deg + 90, 5)) + "L" + P(tip) + "L" + P(at(b, deg - 90, 5)) + '"/>';
+    }
+    return out;
+  }
+  function wedgeD(c, a1, a2, r) {
+    var span = norm(a2 - a1), s = at(c, a1, r), e = at(c, a1 + span, r);
+    return "M" + P(c) + "L" + P(s) + "A" + r + " " + r + " 0 " + (span > 180 ? 1 : 0) + " 0 " + P(e) + "Z";
+  }
+  function arcD(c, a1, a2, r) {
+    var span = norm(a2 - a1), s = at(c, a1, r), e = at(c, a1 + span, r);
+    return "M" + P(s) + "A" + r + " " + r + " 0 " + (span > 180 ? 1 : 0) + " 0 " + P(e);
+  }
+  function text(p, s, cls, anchor) {
+    return '<text class="' + cls + '" x="' + f(p[0]) + '" y="' + f(p[1]) + '"' + (anchor ? ' text-anchor="' + anchor + '"' : "") + ">" + esc(s) + "</text>";
+  }
+  function anchorFor(deg) { var c = Math.cos(rad(deg)); return c > .38 ? "start" : c < -.38 ? "end" : "middle"; }
+
+  /* one angle between rays a1 -> a2 at c
+     o: { cls: "hl" | "hl2" | "mk" | "", n: label, expr: text, er/ea: expr radius/anchor, meas: text, hit: id, r } */
+  function angle(c, a1, a2, o) {
+    var span = norm(a2 - a1), mid = a1 + span / 2, r = o.r || 19;
+    var parts = { fill: "", arc: "", label: "", hit: "" };
+    if (o.cls) {
+      parts.fill = '<path class="w ' + o.cls + '" d="' + wedgeD(c, a1, a2, r) + '"/>';
+      parts.arc = '<path class="arc ' + o.cls + '" d="' + arcD(c, a1, a2, r) + '"/>';
+    }
+    var lr = span < 52 ? r + 15 : r + 10;
+    if (o.n) parts.label += text(at(c, mid, lr), o.n, "num" + (o.cls === "hl" || o.cls === "hl2" ? " on " + o.cls : ""));
+    if (o.expr) parts.label += text(at(c, mid, o.er || (span < 52 ? r + 30 : r + 22)), o.expr, "expr", o.ea || anchorFor(mid));
+    if (o.meas) parts.label += text(at(c, mid, o.n ? lr + 17 : lr), o.meas, "meas", o.n ? anchorFor(mid) : "middle");
+    if (o.hit) parts.hit = '<path class="hit" data-n="' + o.hit + '" d="' + wedgeD(c, a1, a2, 46) + '"/>';
+    return parts;
+  }
+  function assemble(cls, w, h, aria, layers) {
+    return '<svg class="geo ' + cls + '" viewBox="0 0 ' + w + " " + h + '" role="img" aria-label="' + esc(aria) + '">' + layers.join("") + "</svg>";
+  }
+
+  /* ---------------- two parallel lines cut by a transversal ----------------
+     Angles are numbered the usual way: 1-4 at the top intersection, 5-8 at the bottom,
+     upper-left, upper-right, lower-left, lower-right. */
+  var POS = { 1: ["T", "UL"], 2: ["T", "UR"], 3: ["T", "LL"], 4: ["T", "LR"], 5: ["B", "UL"], 6: ["B", "UR"], 7: ["B", "LL"], 8: ["B", "LR"] };
+  function range(pos, th) { return { UR: [0, th], UL: [th, 180], LL: [180, 180 + th], LR: [180 + th, 360] }[pos]; }
+  function meas(n, th) { var p = POS[n][1]; return p === "UR" || p === "LL" ? th : 180 - th; }
+
+  /* o: { theta, single, nums: true | [n...], hl: [n...], hl2: [n...], mk: [n...], exprs: {n: text}, labels: {n: text},
+          measures, hit, names: [top, bottom, transversal], marks (parallel chevrons, default true), compact, aria, cls } */
+  function tfig(o) {
+    var th = o.theta, W = o.compact ? 330 : 440, H = o.single ? 230 : o.compact ? 226 : 290, cx = W / 2, cy = H / 2;
+    var ys = o.single ? [cy] : o.compact ? [78, 148] : [95, 195], box = [10, 10, W - 10, H - 10];
+    var cot = Math.cos(rad(th)) / Math.sin(rad(th));
+    var names = o.names || (o.single ? ["", "", "t"] : ["ℓ", "m", "t"]);
+    var fills = [], lines = [], arcs = [], labels = [], hits = [];
+    var cs = ys.map(function (y) { return [cx + (cy - y) * cot, y]; });
+    ys.forEach(function (y, i) {
+      var L = fullLine([cx, y], 0, box);
+      lines.push(L.svg);
+      if (names[i]) labels.push(text([W - 16, y - 12], names[i], "lname", "middle"));
+      if (!o.single && o.marks !== false) lines.push(chevrons([o.compact ? 46 : 62, y], 0, 1));
+    });
+    var T = fullLine([cx, cy], th, box, "ln tr");
+    lines.push(T.svg);
+    labels.push(text(at(at(T.b, th + 180, 12), th < 90 ? th - 90 : th + 90, 14), names[2], "lname", "middle"));
+    var count = o.single ? 4 : 8;
+    function has(list, n) { return list && list.indexOf(n) !== -1; }
+    for (var n = 1; n <= count; n++) {
+      var c = POS[n][0] === "T" || o.single ? cs[0] : cs[1], rg = range(POS[n][1], th);
+      var cls = has(o.hl, n) ? "hl" : has(o.hl2, n) ? "hl2" : has(o.mk, n) || (o.exprs && o.exprs[n]) ? "mk" : "";
+      var lab = (o.labels && o.labels[n]) || ((o.nums === true || has(o.nums, n)) ? String(n) : "");
+      var a = angle(c, rg[0], rg[1], { cls: cls, n: lab, expr: o.exprs && o.exprs[n] ? o.exprs[n] : "", meas: o.measures ? meas(n, th) + "°" : "", hit: o.hit ? n : 0 });
+      fills.push(a.fill); arcs.push(a.arc); labels.push(a.label); hits.push(a.hit);
+    }
+    return assemble("tfig" + (o.cls ? " " + o.cls : ""), W, H, o.aria || "Two parallel lines cut by a transversal", fills.concat(lines, arcs, labels, hits));
+  }
+
+  /* ---------------- angle pairs ---------------- */
+  var PAIRS = {
+    corr: { name: "Corresponding angles", rel: "cong", where: "in the same spot at each intersection", look: "an F shape",
+      thm: "Corresponding Angles Postulate", conv: "Converse of the Corresponding Angles Postulate" },
+    ai: { name: "Alternate interior angles", rel: "cong", where: "between the two lines, on opposite sides of the transversal", look: "a Z shape",
+      thm: "Alternate Interior Angles Theorem", conv: "Converse of the Alternate Interior Angles Theorem" },
+    ae: { name: "Alternate exterior angles", rel: "cong", where: "outside the two lines, on opposite sides of the transversal", look: "the outside corners of a stretched Z",
+      thm: "Alternate Exterior Angles Theorem", conv: "Converse of the Alternate Exterior Angles Theorem" },
+    ssi: { name: "Same-side interior angles", rel: "supp", where: "between the two lines, on the same side of the transversal", look: "a C (or U) shape",
+      thm: "Same-Side Interior Angles Theorem", conv: "Converse of the Same-Side Interior Angles Theorem" },
+    sse: { name: "Same-side exterior angles", rel: "supp", where: "outside the two lines, on the same side of the transversal", look: "the outside of a C",
+      thm: "Same-Side Exterior Angles Theorem", conv: "Converse of the Same-Side Exterior Angles Theorem" },
+    vert: { name: "Vertical angles", rel: "cong", where: "across from each other at the same intersection (they make an X)", look: "an X", always: true,
+      thm: "Vertical Angles Theorem" },
+    linear: { name: "Linear pair", rel: "supp", where: "side by side at the same intersection, together making a straight line", look: "a straight line split in two", always: true,
+      thm: "Linear Pair Postulate" }
+  };
+  var ORDER = ["corr", "ai", "ae", "ssi", "sse", "vert", "linear"];
+  var INSTANCES = { corr: [[1, 5], [2, 6], [3, 7], [4, 8]], ai: [[3, 6], [4, 5]], ae: [[1, 8], [2, 7]], ssi: [[3, 5], [4, 6]], sse: [[1, 7], [2, 8]],
+    vert: [[1, 4], [2, 3], [5, 8], [6, 7]], linear: [[1, 2], [1, 3], [2, 4], [3, 4], [5, 6], [5, 7], [6, 8], [7, 8]] };
+
+  function classify(a, b) {
+    var A = POS[a], B = POS[b];
+    if (A[0] === B[0]) {
+      if (A[1] === B[1]) return null;
+      var opp = { UL: "LR", LR: "UL", UR: "LL", LL: "UR" };
+      return opp[A[1]] === B[1] ? "vert" : "linear";
+    }
+    if (A[1] === B[1]) return "corr";
+    var t = A[0] === "T" ? A[1] : B[1], u = A[0] === "T" ? B[1] : A[1];
+    var tIn = t.charAt(0) === "L", uIn = u.charAt(0) === "U", same = t.charAt(1) === u.charAt(1);
+    if (tIn && uIn) return same ? "ssi" : "ai";
+    if (!tIn && !uIn) return same ? "sse" : "ae";
+    return null;
+  }
+
+  /* ---------------- general figures for the proofs and examples ---------------- */
+  // fig({ w, h, lines: [{p, d, name, at, marks}], segs: [[a, b]], angles: [{c, a1, a2, cls, n, expr}], points: [{p, name, dx, dy}], chev: [{p, d, n}] })
+  function fig(o) {
+    var box = [10, 10, o.w - 10, o.h - 10], fills = [], lines = [], arcs = [], labels = [];
+    (o.lines || []).forEach(function (L) {
+      var r = fullLine(L.p, L.d, box);
+      lines.push(r.svg);
+      if (L.name) {
+        var end = L.end === "a" ? r.a : r.b, dd = L.end === "a" ? L.d + 180 : L.d;
+        labels.push(text(at(at(end, dd + 180, 8), dd + (L.side || 90), 14), L.name, "lname", "middle"));
+      }
+    });
+    (o.segs || []).forEach(function (s) { lines.push(seg(s[0], s[1])); });
+    (o.chev || []).forEach(function (c) { lines.push(chevrons(c.p, c.d, c.n || 1)); });
+    (o.angles || []).forEach(function (A) {
+      var a = angle(A.c, A.a1, A.a2, { cls: A.cls === undefined ? "mk" : A.cls, n: A.n, expr: A.expr, er: A.er, ea: A.ea, r: A.r });
+      fills.push(a.fill); arcs.push(a.arc); labels.push(a.label);
+    });
+    (o.points || []).forEach(function (p) {
+      lines.push('<circle class="pt" cx="' + f(p.p[0]) + '" cy="' + f(p.p[1]) + '" r="2.6"/>');
+      if (p.name) labels.push(text([p.p[0] + (p.dx || 0), p.p[1] + (p.dy || 0)], p.name, "pname", "middle"));
+    });
+    return assemble(o.cls || "", o.w, o.h, o.aria || "", fills.concat(lines, arcs, labels));
+  }
+
+  // angle ABC with a ray BD splitting it; the vertex moves right for wide angles so every ray fits
+  function bisectFig(half, e1, e2, names) {
+    names = names || ["A", "B", "C", "D"];
+    var W = 440, H = 240, whole = 2 * half, B = [whole > 100 ? 250 : whole > 70 ? 160 : 70, 200];
+    function reach(deg) {
+      var dx = Math.cos(rad(deg)), dy = -Math.sin(rad(deg)), t = 290;
+      if (dx > 1e-6) t = Math.min(t, (W - 34 - B[0]) / dx);
+      if (dx < -1e-6) t = Math.min(t, (34 - B[0]) / dx);
+      if (dy < -1e-6) t = Math.min(t, (30 - B[1]) / dy);
+      return t;
+    }
+    var Ap = at(B, whole, reach(whole)), Dp = at(B, half, reach(half)), Cp = at(B, 0, reach(0));
+    // labels sit far enough out that each half is wider than its label
+    var er = half < 30 ? 200 : half < 45 ? 160 : 130;
+    return fig({ w: W, h: H, cls: "bfig", aria: "An angle split in two by a ray",
+      segs: [[B, Ap], [B, Dp], [B, Cp]],
+      angles: [{ c: B, a1: 0, a2: half, cls: "mk", expr: e2, r: 40, er: er, ea: "middle" }, { c: B, a1: half, a2: whole, cls: "mk", expr: e1, r: 48, er: er, ea: "middle" }],
+      points: [{ p: B, name: names[1], dx: -4, dy: 18 }, { p: Ap, name: names[0], dx: -12, dy: -6 }, { p: Dp, name: names[3], dx: 13, dy: -4 }, { p: Cp, name: names[2], dx: 6, dy: 18 }] });
+  }
+
+  /* ---------------- question helpers ---------------- */
+  function rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function expr(a, b) {
+    var s = a === 1 ? "x" : a === -1 ? "−x" : (a < 0 ? "−" + (-a) : a) + "x";
+    if (b > 0) s += " + " + b; else if (b < 0) s += " − " + (-b);
+    return s;
+  }
+  function paren(a, b) { return "(" + expr(a, b) + ")°"; }
+  function num(v) { return String(Math.round(v * 100) / 100).replace("-", "−"); }
+  function cx(c) { return c === 1 ? "" : c === -1 ? "−" : num(c); }
+  function plug(e, x) { return num(e[0]) + "(" + x + ") " + (e[1] < 0 ? "− " + (-e[1]) : "+ " + e[1]); }
+
+  // pick coefficients so a*x + b equals the target measure (never the coefficient in `bad`)
+  function coeffs(target, x, bad) {
+    for (var k = 0; k < 200; k++) {
+      var a = Math.random() < .14 ? pick([-1, -2]) : rnd(2, 9);
+      if (bad !== undefined && a === bad) continue;
+      var b = target - a * x;
+      if (b === 0 || Math.abs(b) > 99) continue;
+      return [a, b];
+    }
+    return [1, target - x];
+  }
+
+  function solveSteps(type, e1, e2, x) {
+    var p = PAIRS[type], s = [];
+    if (p.rel === "cong") {
+      var A = e1[0] - e2[0], B = e2[1] - e1[1];
+      if (A < 0) { A = -A; B = -B; }
+      s.push("They are " + p.name.toLowerCase() + (p.always ? "" : " and the lines are parallel") + ", so the angles are congruent (equal).");
+      s.push("Set them equal: " + expr(e1[0], e1[1]) + " = " + expr(e2[0], e2[1]) + ".");
+      s.push("Get x by itself: " + cx(A) + "x = " + num(B) + ", so x = " + num(x) + ".");
+    } else {
+      var C = e1[0] + e2[0], D = e1[1] + e2[1];
+      s.push("They are " + (type === "linear" ? "a linear pair" : p.name.toLowerCase() + (p.always ? "" : " and the lines are parallel")) + ", so the angles are supplementary (they add to 180°).");
+      s.push("Add them and set the sum to 180: (" + expr(e1[0], e1[1]) + ") + (" + expr(e2[0], e2[1]) + ") = 180.");
+      s.push("Combine like terms: " + expr(C, D) + " = 180, so " + cx(C) + "x = " + num(180 - D) + " and x = " + num(x) + ".");
+    }
+    return s;
+  }
+
+  /* ---------------- generators: each returns a practice question ---------------- */
+  var THETAS = [45, 50, 55, 60, 65, 70, 110, 115, 120, 125, 130, 135];
+
+  function genName(type) {
+    return function () {
+      var th = pick(THETAS), inst = pick(INSTANCES[type]);
+      if (Math.random() < .5) inst = [inst[1], inst[0]];
+      var o = shuffle(ORDER.filter(function (k) { return k !== type; })).slice(0, 3).map(function (k) { return PAIRS[k].name; });
+      var p = PAIRS[type];
+      return {
+        q: "What kind of angle pair are ∠" + inst[0] + " and ∠" + inst[1] + "?",
+        a: p.name, o: o,
+        e: p.name + " are " + p.where + ". " + (p.rel === "cong" ? "They are congruent" : "They are supplementary") +
+          (p.always ? " every time." : " when the lines are parallel."),
+        fig: tfig({ theta: th, nums: true, hl: inst, aria: "Two parallel lines cut by a transversal with angles " + inst[0] + " and " + inst[1] + " highlighted" })
+      };
+    };
+  }
+
+  // solve for x (ask: "x"), or for the angle measure ("angle"), or for a third numbered angle ("other")
+  function genSolve(type, ask) {
+    return function () {
+      var single = !!PAIRS[type].always, th = pick(THETAS), inst = pick(INSTANCES[type].filter(function (p) { return !single || p[0] <= 4; }));
+      if (Math.random() < .5) inst = [inst[1], inst[0]];
+      var m1 = meas(inst[0], th), m2 = meas(inst[1], th), x = rnd(4, 19);
+      var e1 = coeffs(m1, x), e2 = coeffs(m2, x, PAIRS[type].rel === "cong" ? e1[0] : -e1[0]);
+      var exprs = {}; exprs[inst[0]] = paren(e1[0], e1[1]); exprs[inst[1]] = paren(e2[0], e2[1]);
+      var steps = solveSteps(type, e1, e2, x), lines = single ? "" : "Lines ℓ and m are parallel. ";
+      var opts = { theta: th, single: single, exprs: exprs, aria: "Angle diagram with two angles labeled with expressions" };
+      if (ask === "x") {
+        return { q: lines + "Find x.", num: x, unit: "", e: steps, fig: tfig(opts) };
+      }
+      if (ask === "angle") {
+        steps.push("Plug x = " + x + " back in: " + plug(e1, x) + " = " + m1 + "°.");
+        return { q: lines + "Find the measure of the angle labeled " + paren(e1[0], e1[1]) + ".", num: m1, unit: "°", e: steps, fig: tfig(opts) };
+      }
+      // a third angle, labeled 1, related to the first expression angle
+      var cands = [];
+      for (var n = 1; n <= (single ? 4 : 8); n++) if (n !== inst[0] && n !== inst[1] && classify(n, inst[0])) cands.push(n);
+      var k = pick(cands), rel = classify(k, inst[0]), m3 = meas(k, th);
+      opts.labels = {}; opts.labels[k] = "1"; opts.mk = [k];
+      steps.push("Plug in to find the labeled angle: " + plug(e1, x) + " = " + m1 + "°.");
+      steps.push("∠1 and that angle are " + (rel === "linear" ? "a linear pair" : PAIRS[rel].name.toLowerCase()) + ", so " +
+        (PAIRS[rel].rel === "cong" ? "m∠1 = " + m3 + "°." : "m∠1 = 180° − " + m1 + "° = " + m3 + "°."));
+      return { q: lines + "Find m∠1.", num: m3, unit: "°", e: steps, fig: tfig(opts) };
+    };
+  }
+
+  // given one angle, find another
+  function genRelate() {
+    var th = pick(THETAS), a = rnd(1, 8), b;
+    do { b = rnd(1, 8); } while (b === a || !classify(a, b));
+    var k = classify(a, b), p = PAIRS[k], ma = meas(a, th), mb = meas(b, th);
+    var labels = {}; labels[a] = ma + "°"; labels[b] = "?";
+    return {
+      q: "Lines ℓ and m are parallel. One angle measures " + ma + "°. What is the measure of the angle marked “?”",
+      num: mb, unit: "°",
+      e: ["They are " + (k === "linear" ? "a linear pair" : p.name.toLowerCase()) + ", so they are " + (p.rel === "cong" ? "congruent." : "supplementary."),
+        p.rel === "cong" ? "So the angle is also " + mb + "°." : "So the angle is 180° − " + ma + "° = " + mb + "°."],
+      fig: tfig({ theta: th, labels: labels, mk: [a], hl: [b], aria: "Two parallel lines cut by a transversal with one angle measure given" })
+    };
+  }
+
+  function genBisect(ask) {
+    return function () {
+      var half = pick([20, 24, 26, 28, 30, 32, 34, 35, 36, 38, 40, 42, 44, 46, 48, 50, 52, 55, 58, 60, 62, 65]), x = rnd(3, 15);
+      var e1 = coeffs(half, x), e2 = coeffs(half, x, e1[0]);
+      var steps = ["A bisector splits the angle into two congruent angles, so set them equal: " + expr(e1[0], e1[1]) + " = " + expr(e2[0], e2[1]) + "."];
+      var A = e1[0] - e2[0], B = e2[1] - e1[1]; if (A < 0) { A = -A; B = -B; }
+      steps.push(cx(A) + "x = " + num(B) + ", so x = " + x + ".");
+      var figure = bisectFig(half, paren(e1[0], e1[1]), paren(e2[0], e2[1]));
+      if (ask === "x") return { q: "Ray BD bisects ∠ABC. Find x.", num: x, unit: "", e: steps, fig: figure };
+      steps.push("Each half is " + plug(e1, x) + " = " + half + "°, so the whole angle is 2 × " + half + "° = " + (2 * half) + "°.");
+      return { q: "Ray BD bisects ∠ABC. Find m∠ABC (the whole angle).", num: 2 * half, unit: "°", e: steps, fig: figure };
+    };
+  }
+
+  function genCompSupp() {
+    var supp = Math.random() < .6, v = supp ? rnd(12, 168) : rnd(8, 82);
+    return { q: "What is the " + (supp ? "supplement" : "complement") + " of a " + v + "° angle?", num: (supp ? 180 : 90) - v, unit: "°",
+      e: [(supp ? "Supplementary angles add to 180°" : "Complementary angles add to 90°") + ", so the answer is " + (supp ? 180 : 90) + "° − " + v + "° = " + ((supp ? 180 : 90) - v) + "°."] };
+  }
+
+  var STMTS = [
+    { cond: "If it is raining, then the ground is wet.", conv: "If the ground is wet, then it is raining.", inv: "If it is not raining, then the ground is not wet.",
+      contra: "If the ground is not wet, then it is not raining.", bi: "It is raining if and only if the ground is wet." },
+    { cond: "If a figure is a square, then it has four sides.", conv: "If a figure has four sides, then it is a square.", inv: "If a figure is not a square, then it does not have four sides.",
+      contra: "If a figure does not have four sides, then it is not a square.", bi: "A figure is a square if and only if it has four sides." },
+    { cond: "If two angles are vertical angles, then they are congruent.", conv: "If two angles are congruent, then they are vertical angles.",
+      inv: "If two angles are not vertical angles, then they are not congruent.", contra: "If two angles are not congruent, then they are not vertical angles.",
+      bi: "Two angles are vertical angles if and only if they are congruent." },
+    { cond: "If you live in Chicago, then you live in Illinois.", conv: "If you live in Illinois, then you live in Chicago.", inv: "If you do not live in Chicago, then you do not live in Illinois.",
+      contra: "If you do not live in Illinois, then you do not live in Chicago.", bi: "You live in Chicago if and only if you live in Illinois." },
+    { cond: "If an angle measures 90°, then it is a right angle.", conv: "If an angle is a right angle, then it measures 90°.", inv: "If an angle does not measure 90°, then it is not a right angle.",
+      contra: "If an angle is not a right angle, then it does not measure 90°.", bi: "An angle measures 90° if and only if it is a right angle." },
+    { cond: "If I practice, then I improve.", conv: "If I improve, then I practice.", inv: "If I do not practice, then I do not improve.",
+      contra: "If I do not improve, then I do not practice.", bi: "I practice if and only if I improve." },
+    { cond: "If two lines are parallel, then they do not intersect.", conv: "If two lines do not intersect, then they are parallel.", inv: "If two lines are not parallel, then they intersect.",
+      contra: "If two lines intersect, then they are not parallel.", bi: "Two lines are parallel if and only if they do not intersect." }
+  ];
+  var FORM = { conv: ["converse", "Switch the hypothesis and the conclusion (q → p)."], inv: ["inverse", "Negate both parts, keeping the order (~p → ~q)."],
+    contra: ["contrapositive", "Switch AND negate both parts (~q → ~p)."], bi: ["biconditional", "Join the parts with “if and only if” (p ↔ q)."] };
+
+  function genForm(form) {
+    return function () {
+      var s = pick(STMTS), others = ["conv", "inv", "contra", "bi"].filter(function (k) { return k !== form; });
+      return { q: "Which statement is the " + FORM[form][0] + " of: “" + s.cond + "”",
+        a: s[form], o: others.map(function (k) { return s[k]; }),
+        e: "The " + FORM[form][0] + ": " + FORM[form][1] };
+    };
+  }
+  function genNameForm() {
+    var s = pick(STMTS), form = pick(["conv", "inv", "contra"]);
+    var names = { conv: "Converse", inv: "Inverse", contra: "Contrapositive" };
+    return { q: "Original: “" + s.cond + "” What is this new statement called? “" + s[form] + "”",
+      a: names[form], o: ["conv", "inv", "contra"].filter(function (k) { return k !== form; }).map(function (k) { return names[k]; }).concat(["Biconditional"]),
+      e: "The " + FORM[form][0] + ": " + FORM[form][1] };
+  }
+
+  return {
+    tfig: tfig, fig: fig, bisectFig: bisectFig, at: at, dirOf: dirOf, meas: meas, classify: classify,
+    PAIRS: PAIRS, ORDER: ORDER, INSTANCES: INSTANCES,
+    genName: genName, genSolve: genSolve, genRelate: genRelate, genBisect: genBisect, genCompSupp: genCompSupp,
+    genForm: genForm, genNameForm: genNameForm, shuffle: shuffle, paren: paren
+  };
+})();
+
+</script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- tabs ---------------- */
+  var tabs = { learn: document.getElementById("tab-learn"), practice: document.getElementById("tab-practice") };
+  var panels = { learn: document.getElementById("learn"), practice: document.getElementById("practice") };
+  var jump = document.getElementById("jump");
+  function show(which, scroll) {
+    Object.keys(tabs).forEach(function (k) {
+      var on = k === which;
+      tabs[k].setAttribute("aria-selected", on ? "true" : "false");
+      panels[k].hidden = !on;
+    });
+    jump.style.visibility = which === "learn" ? "visible" : "hidden";
+    try { localStorage.setItem("geo-tab", which); } catch (e) {}
+    if (scroll) {
+      var bar = document.querySelector(".tabbar");
+      var top = bar.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY > top) window.scrollTo({ top: top, behavior: "auto" });
+    }
+  }
+  tabs.learn.addEventListener("click", function () { show("learn", true); });
+  tabs.practice.addEventListener("click", function () { show("practice", true); });
+  jump.addEventListener("click", function (e) { if (e.target.closest("a")) show("learn", false); });
+
+  // text with ∠ ≅ ∥ ⊥ given their own style (every font draws them small)
+  function fmt(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/[∠≅∥⊥]/g, '<span class="op">$&</span>');
+  }
+  function op(html) { return html.replace(/[∠≅∥⊥]/g, '<span class="op">$&</span>'); }
+
+  /* ---------------- angle explorer ---------------- */
+  var exFig = document.querySelector("#explorer .ex-fig"), exOut = document.getElementById("ex-out");
+  var tilt = document.getElementById("ex-tilt"), tiltOut = document.getElementById("ex-tilt-val"), measBox = document.getElementById("ex-meas");
+  var pairBtns = Array.prototype.slice.call(document.querySelectorAll("#explorer [data-pair]"));
+  var ex = { th: 60, sel: [], type: null, i: 0 };
+
+  function exDraw() {
+    exFig.innerHTML = GEO.tfig({ theta: ex.th, nums: true, hl: ex.sel, hit: true, measures: measBox.checked,
+      aria: "Two parallel lines cut by a transversal, angles numbered 1 to 8" + (ex.sel.length ? ", with angle " + ex.sel.join(" and angle ") + " highlighted" : "") });
+    pairBtns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-pair") === ex.type ? "true" : "false"); });
+    tiltOut.textContent = ex.th + "°";
+    exDescribe();
+  }
+  function exDescribe() {
+    var s = ex.sel, h = "";
+    if (s.length === 0) h = '<p class="ex-hint">Pick a pair above, or click any two angles in the drawing to see how they’re related.</p>';
+    else if (s.length === 1) h = '<p class="ex-hint">∠' + s[0] + " is selected (" + GEO.meas(s[0], ex.th) + "°). Click a second angle.</p>";
+    else {
+      var a = s[0], b = s[1], k = GEO.classify(a, b), ma = GEO.meas(a, ex.th), mb = GEO.meas(b, ex.th);
+      if (k) {
+        var p = GEO.PAIRS[k];
+        h = "<h3>" + p.name + "</h3><p class=\"muted\">∠" + a + " and ∠" + b + " are " + p.where + ".</p>" +
+          (p.rel === "cong" ? '<p class="rel cong">Congruent: m∠' + a + " = m∠" + b + " = " + ma + "°</p>"
+                            : '<p class="rel supp">Supplementary: ' + ma + "° + " + mb + "° = 180°</p>") +
+          '<p class="note">' + (p.always ? "This is true for any two lines that cross." : "This works because ℓ ∥ m.") +
+          (ex.type ? " Pair " + (ex.i + 1) + " of " + GEO.INSTANCES[ex.type].length + (GEO.INSTANCES[ex.type].length > 1 ? ". Press the button again for the next pair." : ".") : "") + "</p>";
+      } else {
+        h = "<h3>No special name</h3><p class=\"muted\">∠" + a + " and ∠" + b + " aren’t one of the named pairs. You can still relate them: " +
+          (ma === mb ? "they’re the same size, so they’re equal (" + ma + "°)." : "one is acute and one is obtuse, so they add to 180°.") + "</p>";
+      }
+    }
+    exOut.innerHTML = op(h);
+  }
+  pairBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-pair");
+      if (ex.type === k) ex.i = (ex.i + 1) % GEO.INSTANCES[k].length; else { ex.type = k; ex.i = 0; }
+      ex.sel = GEO.INSTANCES[k][ex.i].slice();
+      exDraw();
+    });
+  });
+  exFig.addEventListener("click", function (e) {
+    var hit = e.target.closest(".hit");
+    if (!hit) return;
+    var n = parseInt(hit.getAttribute("data-n"), 10);
+    ex.type = null;
+    var at = ex.sel.indexOf(n);
+    if (at !== -1) ex.sel.splice(at, 1);
+    else if (ex.sel.length >= 2) ex.sel = [n];
+    else ex.sel.push(n);
+    exDraw();
+  });
+  tilt.addEventListener("input", function () { ex.th = parseInt(tilt.value, 10); exDraw(); });
+  measBox.addEventListener("change", exDraw);
+  exDraw();
+
+  /* ---------------- proofs: reveal one step at a time ---------------- */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-proof]"), function (box) {
+    var rows = Array.prototype.slice.call(box.querySelectorAll("tbody tr"));
+    var next = box.querySelector('[data-act="next"]'), all = box.querySelector('[data-act="all"]'), reset = box.querySelector('[data-act="reset"]');
+    var shown = 0;
+    function update(fresh) {
+      rows.forEach(function (r, i) { r.classList.toggle("cover", i >= shown); r.classList.toggle("fresh", i === fresh); });
+      var done = shown >= rows.length;
+      next.hidden = done; all.hidden = done; reset.hidden = shown === 0;
+      next.textContent = "Show step " + (shown + 1);
+    }
+    next.addEventListener("click", function () { shown += 1; update(shown - 1); });
+    all.addEventListener("click", function () { shown = rows.length; update(-1); });
+    reset.addEventListener("click", function () { shown = 0; update(-1); next.focus(); });
+    update(-1);
+  });
+
+  /* ---------------- question bank ---------------- */
+  var TOPICS = [
+    { id: "pairs", name: "Angle pairs" },
+    { id: "algebra", name: "Solving for x" },
+    { id: "proofs", name: "Proofs & reasons" },
+    { id: "logic", name: "Logic" },
+    { id: "basics", name: "Angle & line basics" }
+  ];
+  function Q(t, q, a, o, e) { return { t: t, q: q, a: a, o: o, e: e }; }
+  function G(t, gen) { return { t: t, gen: gen }; }
+  var BANK = [];
+
+  // angle pairs: name the highlighted pair (new diagram every time)
+  ["corr", "ai", "ae", "ssi", "sse", "corr", "ai", "ae", "ssi", "sse", "vert", "linear"].forEach(function (k) { BANK.push(G("pairs", GEO.genName(k))); });
+  BANK.push(
+    Q("pairs", "Alternate interior angles formed by two parallel lines and a transversal are…", "Congruent", ["Supplementary", "Complementary", "Always right angles"],
+      "Alternate interior angles are congruent when the lines are parallel (Alternate Interior Angles Theorem)."),
+    Q("pairs", "Same-side interior angles formed by two parallel lines and a transversal are…", "Supplementary (they add to 180°)", ["Congruent", "Complementary (they add to 90°)", "Vertical angles"],
+      "Same-side (consecutive) interior angles add to 180° when the lines are parallel."),
+    Q("pairs", "Which pairs are congruent when a transversal crosses two parallel lines?", "Corresponding, alternate interior, and alternate exterior angles",
+      ["Same-side interior and same-side exterior angles", "Linear pairs", "None of them"], "Those three pairs (plus vertical angles) are congruent. Same-side pairs and linear pairs are supplementary."),
+    Q("pairs", "If two lines are NOT parallel, are their corresponding angles congruent?", "No. That only works when the lines are parallel.",
+      ["Yes, always", "Only if the angles are acute", "Only if the transversal is horizontal"], "The parallel-line angle rules need parallel lines. Only vertical angles and linear pairs work for any lines."),
+    Q("pairs", "Which angle relationships are true for ANY two lines that cross, parallel or not?", "Vertical angles are congruent and linear pairs are supplementary",
+      ["Corresponding angles are congruent", "Alternate interior angles are congruent", "Same-side interior angles are supplementary"], "Vertical angles and linear pairs only need two crossing lines."),
+    Q("pairs", "Interior angles are the angles…", "Between the two lines", ["Outside the two lines", "On the transversal only", "That are acute"],
+      "Interior means between the two lines. Exterior means outside them."),
+    Q("pairs", "How many angles does a transversal form with two lines?", "8", ["4", "6", "12"], "Four angles at each of the two intersections."),
+    Q("pairs", "Which letter shape helps you spot alternate interior angles?", "Z", ["F", "C (or U)", "X"],
+      "Alternate interior angles sit in the corners of a Z. An F shows corresponding angles, a C or U shows same-side interior angles, and an X shows vertical angles.")
+  );
+
+  // solving for x (typed answers, new numbers every time)
+  [["corr", "x"], ["ai", "x"], ["ae", "x"], ["ssi", "x"], ["sse", "x"], ["corr", "other"], ["ai", "other"], ["ssi", "other"], ["ae", "angle"], ["sse", "angle"],
+   ["vert", "x"], ["linear", "x"], ["vert", "angle"], ["linear", "other"]].forEach(function (s) { BANK.push(G("algebra", GEO.genSolve(s[0], s[1]))); });
+  BANK.push(G("algebra", GEO.genRelate), G("algebra", GEO.genRelate), G("algebra", GEO.genRelate), G("algebra", GEO.genBisect("x")), G("algebra", GEO.genBisect("whole")));
+
+  // proofs & reasons
+  BANK.push(
+    Q("proofs", "What goes in the first line of a two-column proof?", "The given information", ["What you want to prove", "A definition", "A converse"],
+      "Start with the Given (reason: “Given”) and end with the Prove statement."),
+    Q("proofs", "ℓ ∥ m, and ∠1 and ∠5 are corresponding angles. Which reason justifies ∠1 ≅ ∠5?", "Corresponding Angles Postulate",
+      ["Converse of the Corresponding Angles Postulate", "Vertical Angles Theorem", "Definition of angle bisector"],
+      "You know the lines are parallel and want an angle fact, so use the postulate itself, not the converse."),
+    Q("proofs", "∠3 ≅ ∠6, and they are alternate interior angles. Which reason lets you conclude ℓ ∥ m?", "Converse of the Alternate Interior Angles Theorem",
+      ["Alternate Interior Angles Theorem", "Corresponding Angles Postulate", "Transitive Property of Congruence"],
+      "You know an angle fact and want parallel lines, so use the converse."),
+    Q("proofs", "∠4 and ∠6 are same-side interior angles, and m∠4 + m∠6 = 180°. Which reason proves ℓ ∥ m?", "Converse of the Same-Side Interior Angles Theorem",
+      ["Same-Side Interior Angles Theorem", "Linear Pair Postulate", "Vertical Angles Theorem"], "Angles → parallel lines means a converse."),
+    Q("proofs", "ℓ ∥ m, and ∠4 and ∠6 are same-side interior angles. Which reason justifies m∠4 + m∠6 = 180°?", "Same-Side Interior Angles Theorem",
+      ["Converse of the Same-Side Interior Angles Theorem", "Angle Addition Postulate", "Vertical Angles Theorem"], "Parallel lines → angle fact means the theorem itself."),
+    Q("proofs", "∠2 ≅ ∠7, and they are alternate exterior angles. Which reason proves the lines are parallel?", "Converse of the Alternate Exterior Angles Theorem",
+      ["Alternate Exterior Angles Theorem", "Converse of the Corresponding Angles Postulate", "Definition of congruent angles"], "Angles → parallel lines: the converse, for the pair you actually have."),
+    Q("proofs", "If ∠A ≅ ∠B and ∠B ≅ ∠C, then ∠A ≅ ∠C. Which property is this?", "Transitive Property of Congruence",
+      ["Symmetric Property of Congruence", "Reflexive Property of Congruence", "Addition Property of Equality"], "Transitive links two congruences that share an angle."),
+    Q("proofs", "∠A ≅ ∠A. Which property is this?", "Reflexive Property", ["Symmetric Property", "Transitive Property", "Substitution Property"], "Anything is congruent to itself: Reflexive."),
+    Q("proofs", "If ∠1 ≅ ∠2, then ∠2 ≅ ∠1. Which property is this?", "Symmetric Property", ["Reflexive Property", "Transitive Property", "Converse"], "Flipping the two sides is the Symmetric Property."),
+    Q("proofs", "m∠1 = m∠2, so ∠1 ≅ ∠2. What is the reason?", "Definition of congruent angles", ["Transitive Property", "Vertical Angles Theorem", "Angle Addition Postulate"],
+      "Congruent angles are angles with equal measures. The definition works in both directions."),
+    Q("proofs", "Ray BD bisects ∠ABC, so ∠ABD ≅ ∠DBC. What is the reason?", "Definition of angle bisector",
+      ["Angle Addition Postulate", "Vertical Angles Theorem", "Definition of supplementary angles"], "A bisector splits an angle into two congruent angles."),
+    Q("proofs", "∠1 and ∠2 form a linear pair, so m∠1 + m∠2 = 180°. What is the reason?", "Linear Pair Postulate",
+      ["Definition of complementary angles", "Vertical Angles Theorem", "Angle Addition Postulate"], "A linear pair is supplementary. Some books call this the Supplement Theorem."),
+    Q("proofs", "m∠ABD + m∠DBC = m∠ABC. What is the reason?", "Angle Addition Postulate", ["Definition of angle bisector", "Segment Addition Postulate", "Substitution Property"],
+      "The two smaller angles add up to the whole angle."),
+    Q("proofs", "If x + 9 = 20, then x = 11. Which property?", "Subtraction Property of Equality", ["Addition Property of Equality", "Division Property of Equality", "Substitution Property"],
+      "9 was subtracted from both sides."),
+    Q("proofs", "If 3x = 27, then x = 9. Which property?", "Division Property of Equality", ["Multiplication Property of Equality", "Subtraction Property of Equality", "Distributive Property"],
+      "Both sides were divided by 3."),
+    Q("proofs", "2(x + 5) = 2x + 10. Which property?", "Distributive Property", ["Substitution Property", "Multiplication Property of Equality", "Transitive Property"],
+      "Multiplying the 2 into the parentheses is the Distributive Property."),
+    Q("proofs", "m∠1 = 50° and m∠1 + m∠2 = 180°, so 50° + m∠2 = 180°. Which property?", "Substitution Property of Equality",
+      ["Transitive Property", "Addition Property of Equality", "Angle Addition Postulate"], "50° was substituted in for m∠1."),
+    Q("proofs", "a ∥ b and b ∥ c. Which reason lets you conclude a ∥ c?", "Transitive Property of Parallel Lines",
+      ["Corresponding Angles Postulate", "Reflexive Property", "Perpendicular Transversal Theorem"], "Two lines parallel to the same line are parallel to each other."),
+    Q("proofs", "∠1 and ∠4 are vertical angles, so ∠1 ≅ ∠4. What is the reason?", "Vertical Angles Theorem",
+      ["Linear Pair Postulate", "Corresponding Angles Postulate", "Definition of angle bisector"], "Vertical angles are always congruent."),
+    Q("proofs", "A line is perpendicular to one of two parallel lines. What do you know about the other parallel line?", "The line is perpendicular to it too",
+      ["The line is parallel to it", "The line makes a 45° angle with it", "Nothing"], "That's the Perpendicular Transversal Theorem."),
+    Q("proofs", "When do you use a converse, like “Converse of the Corresponding Angles Postulate”?", "When you know something about the angles and want to prove lines are parallel",
+      ["When you know the lines are parallel and want an angle fact", "Any time two angles are congruent", "Only in the first step of a proof"],
+      "Converses go from angles to parallel lines.")
+  );
+
+  // logic
+  ["conv", "inv", "contra", "bi"].forEach(function (f) { BANK.push(G("logic", GEO.genForm(f))); });
+  BANK.push(G("logic", GEO.genNameForm), G("logic", GEO.genNameForm));
+  BANK.push(
+    Q("logic", "In the statement “If p, then q,” what is p called?", "The hypothesis", ["The conclusion", "The converse", "The counterexample"],
+      "p is the hypothesis (the “if” part). q is the conclusion (the “then” part)."),
+    Q("logic", "What does ~p mean?", "Not p (the negation of p)", ["p is true", "p implies q", "p if and only if q"], "The ~ symbol means “not.”"),
+    Q("logic", "Which shows the contrapositive of p → q?", "~q → ~p", ["q → p", "~p → ~q", "p ↔ q"], "Contrapositive: switch AND negate both parts."),
+    Q("logic", "Which shows the converse of p → q?", "q → p", ["~q → ~p", "~p → ~q", "p ↔ q"], "Converse: switch the hypothesis and conclusion."),
+    Q("logic", "Which shows the inverse of p → q?", "~p → ~q", ["q → p", "~q → ~p", "p ↔ q"], "Inverse: negate both parts and keep the order."),
+    Q("logic", "Which statement always has the same truth value as the original conditional?", "The contrapositive", ["The converse", "The inverse", "The biconditional"],
+      "A conditional and its contrapositive are logically equivalent: both true or both false."),
+    Q("logic", "The converse and the inverse of a conditional are…", "Always both true or both false", ["Always opposites", "Always true", "Always false"],
+      "The inverse is the contrapositive of the converse, so they always match each other."),
+    Q("logic", "When can a conditional be written as a true biconditional?", "When the conditional and its converse are both true",
+      ["Whenever the conditional is true", "When the inverse is false", "When the hypothesis is false"], "p ↔ q means p → q AND q → p."),
+    Q("logic", "Which of these is a true biconditional?", "An angle is a right angle if and only if it measures 90°.",
+      ["Two angles are congruent if and only if they are vertical angles.", "A figure has four sides if and only if it is a square.", "A number is odd if and only if it is prime."],
+      "Right angle ↔ 90° works both ways. Each of the others has a false converse."),
+    Q("logic", "Which is a counterexample to “If two angles are congruent, then they are vertical angles”?", "Two alternate interior angles formed by parallel lines",
+      ["Two vertical angles", "Two angles that form a linear pair", "Two angles that are not congruent"],
+      "A counterexample makes the hypothesis true (congruent) but the conclusion false (not vertical)."),
+    Q("logic", "Which is a counterexample to “If a number is prime, then it is odd”?", "2", ["3", "9", "15"], "2 is prime (hypothesis true) but even (conclusion false)."),
+    Q("logic", "If a figure is a square, then it has four right angles. ABCD is a square. What can you conclude?", "ABCD has four right angles.",
+      ["Every figure with four right angles is a square.", "ABCD is not a rectangle.", "Nothing. The argument is invalid."], "Law of Detachment: p → q is true and p is true, so q is true."),
+    Q("logic", "If it snows, school is canceled. If school is canceled, I sleep in. Which conclusion is valid?", "If it snows, I sleep in.",
+      ["If I sleep in, it snowed.", "If school is canceled, it snowed.", "If it doesn’t snow, I don’t sleep in."], "Law of Syllogism: p → q and q → r give p → r."),
+    Q("logic", "If you study, you pass. Jordan passed. Therefore, Jordan studied. Is this argument valid?", "Invalid: the conclusion being true doesn’t prove the hypothesis",
+      ["Valid by the Law of Detachment", "Valid by the Law of Syllogism", "Valid because the conditional is true"], "Jordan might have passed some other way. This uses the converse, which isn’t guaranteed."),
+    Q("logic", "If Sam practices, he makes the team. If Ava practices, she makes the team. Therefore, if Sam practices, Ava makes the team. Valid or invalid?", "Invalid",
+      ["Valid by the Law of Syllogism", "Valid by the Law of Detachment", "Valid because both statements are true"],
+      "For syllogism, the conclusion of the first statement must be the hypothesis of the second. These don’t connect."),
+    Q("logic", "Which law says: if p → q is true and p is true, then q is true?", "Law of Detachment", ["Law of Syllogism", "Law of Contrapositives", "Transitive Property"],
+      "Detachment: once the hypothesis happens, you can “detach” the conclusion."),
+    Q("logic", "Which law says: if p → q and q → r, then p → r?", "Law of Syllogism", ["Law of Detachment", "Converse", "Substitution Property"], "Syllogism chains conditionals together."),
+    Q("logic", "Noticing a pattern in examples and making a conjecture is called…", "Inductive reasoning", ["Deductive reasoning", "A biconditional", "A proof"],
+      "Inductive reasoning goes from examples to a guess. Deductive reasoning uses facts and logic to reach a certain conclusion."),
+    Q("logic", "A two-column proof uses which kind of reasoning?", "Deductive reasoning", ["Inductive reasoning", "Guess and check", "Counterexamples"],
+      "Proofs build from given facts, definitions, and theorems. That's deductive.")
+  );
+
+  // basics
+  BANK.push(
+    Q("basics", "Two angles whose measures add up to 90° are…", "Complementary", ["Supplementary", "Congruent", "Vertical"], "Complementary: 90°. Supplementary: 180°."),
+    Q("basics", "Two angles whose measures add up to 180° are…", "Supplementary", ["Complementary", "Congruent", "Acute"], "Supplementary: 180°. Complementary: 90°."),
+    Q("basics", "Lines that are not in the same plane and never intersect are called…", "Skew lines", ["Parallel lines", "Perpendicular lines", "Transversals"],
+      "Parallel lines are in the same plane. Skew lines are not."),
+    Q("basics", "Parallel lines are lines that…", "Are in the same plane and never intersect", ["Intersect at a right angle", "Are in different planes", "Cross at one point"],
+      "Same plane, never meet."),
+    Q("basics", "Perpendicular lines intersect to form…", "Right angles (90°)", ["Acute angles", "Obtuse angles", "No angles"], "Perpendicular means meeting at 90°."),
+    Q("basics", "A transversal is…", "A line that crosses two or more lines at different points", ["A line parallel to two other lines", "The angle between two lines", "A ray that bisects an angle"],
+      "The transversal is the line that cuts across the others."),
+    Q("basics", "An angle bisector…", "Splits an angle into two congruent angles", ["Makes a right angle with one side", "Always measures 90°", "Adds to 180° with the angle"],
+      "Bisect means cut into two equal parts."),
+    Q("basics", "Vertical angles are always…", "Congruent", ["Supplementary", "Complementary", "Adjacent"], "Vertical Angles Theorem: vertical angles are congruent."),
+    Q("basics", "A linear pair of angles is always…", "Supplementary", ["Congruent", "Complementary", "Vertical"], "Together they form a straight line, 180°."),
+    Q("basics", "∠1 measures 35°. What is the measure of the angle vertical to it?", "35°", ["55°", "145°", "325°"], "Vertical angles are congruent, so it's also 35°.")
+  );
+  BANK.push(G("basics", GEO.genCompSupp), G("basics", GEO.genCompSupp), G("basics", GEO.genCompSupp));
+
+  function realize(item, idx) {
+    var r = item.gen ? item.gen() : item;
+    var it = { idx: idx, t: item.t, q: r.q, e: r.e, fig: r.fig || null };
+    if (r.num !== undefined) { it.num = r.num; it.unit = r.unit || ""; it.a = String(r.num) + it.unit; }
+    else { it.a = r.a; it.choices = GEO.shuffle([r.a].concat(r.o)); it.correct = it.choices.indexOf(r.a); }
+    return it;
+  }
+
+  /* ---------------- setup ---------------- */
+  var topicBox = document.getElementById("topic-pills");
+  var counts = {};
+  BANK.forEach(function (b) { counts[b.t] = (counts[b.t] || 0) + 1; });
+  TOPICS.forEach(function (tp) {
+    var lab = document.createElement("label");
+    lab.className = "pill";
+    lab.innerHTML = '<input type="checkbox" value="' + tp.id + '" checked><span>' + tp.name + " <small>" + counts[tp.id] + "</small></span>";
+    topicBox.appendChild(lab);
+  });
+  function pool() {
+    var ts = Array.prototype.slice.call(topicBox.querySelectorAll("input:checked")).map(function (i) { return i.value; });
+    return BANK.map(function (b, i) { return i; }).filter(function (i) { return ts.indexOf(BANK[i].t) !== -1; });
+  }
+  function refreshPool() {
+    var n = pool().length;
+    document.getElementById("all-count").textContent = n;
+    document.getElementById("qz-pool").textContent = n ? n + " questions available" : "Pick at least one topic.";
+    document.getElementById("qz-go").disabled = n === 0;
+  }
+  topicBox.addEventListener("change", refreshPool);
+  refreshPool();
+
+  /* ---------------- running a test ---------------- */
+  var run = null;
+  var el = {
+    start: document.getElementById("qz-start"), run: document.getElementById("qz-run"), done: document.getElementById("qz-done"),
+    count: document.getElementById("qz-count"), right: document.getElementById("qz-right"), bar: document.getElementById("qz-bar"),
+    topic: document.getElementById("qz-topic"), q: document.getElementById("qz-q"), fig: document.getElementById("qz-fig"),
+    opts: document.getElementById("qz-opts"), fb: document.getElementById("qz-fb"), next: document.getElementById("qz-next"), kbd: document.getElementById("qz-kbd")
+  };
+  var TOPIC_NAME = {};
+  TOPICS.forEach(function (t) { TOPIC_NAME[t.id] = t.name; });
+
+  function begin(indices) {
+    run = { items: indices.map(function (i) { return realize(BANK[i], i); }), at: 0, answers: [] };
+    el.start.hidden = true; el.done.hidden = true; el.run.hidden = false;
+    render();
+  }
+  document.getElementById("qz-go").addEventListener("click", function () {
+    var p = GEO.shuffle(pool());
+    var len = document.querySelector('input[name="qlen"]:checked').value;
+    if (len !== "all") p = p.slice(0, parseInt(len, 10));
+    if (p.length) begin(p);
+  });
+
+  function score() { return run.answers.filter(function (a) { return a && a.ok; }).length; }
+
+  function render() {
+    var it = run.items[run.at], n = run.items.length;
+    el.count.textContent = "Question " + (run.at + 1) + " of " + n;
+    el.right.textContent = score() + " correct";
+    el.bar.style.width = (run.at / n * 100) + "%";
+    el.topic.textContent = TOPIC_NAME[it.t];
+    el.q.innerHTML = fmt(it.q);
+    el.fig.innerHTML = it.fig ? '<div class="plate">' + it.fig + "</div>" : "";
+    el.opts.innerHTML = "";
+    if (it.num !== undefined) {
+      var form = document.createElement("form");
+      form.className = "numform";
+      form.innerHTML = '<label for="qz-num">Your answer</label><span class="numbox"><input id="qz-num" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">' +
+        (it.unit ? "<span>" + it.unit + "</span>" : "") + '</span><button type="submit" class="btn primary">Check</button>';
+      form.addEventListener("submit", function (e) { e.preventDefault(); answerNum(form); });
+      el.opts.appendChild(form);
+      el.kbd.textContent = "Type a number, then press Enter";
+      setTimeout(function () { var i = form.querySelector("input"); if (i) i.focus({ preventScroll: true }); }, 0);
+    } else {
+      it.choices.forEach(function (c, i) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "opt";
+        b.innerHTML = '<span class="k">' + (i + 1) + "</span><span></span>";
+        b.lastChild.innerHTML = fmt(c);
+        b.addEventListener("click", function () { answer(i); });
+        el.opts.appendChild(b);
+      });
+      el.kbd.textContent = "Keys: 1–4 to answer, Enter for next";
+    }
+    el.fb.hidden = true; el.next.hidden = true;
+    el.run.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+
+  function feedback(ok, it) {
+    el.fb.className = "fb " + (ok ? "good" : "bad");
+    el.fb.innerHTML = "<strong></strong>";
+    el.fb.firstChild.innerHTML = ok ? "Correct." : "Not quite. The answer is " + fmt(it.a) + ".";
+    if (Array.isArray(it.e)) {
+      var ol = document.createElement("ol");
+      it.e.forEach(function (s) { var li = document.createElement("li"); li.innerHTML = fmt(s); ol.appendChild(li); });
+      el.fb.appendChild(ol);
+    } else {
+      var sp = document.createElement("span"); sp.innerHTML = fmt(it.e); el.fb.appendChild(sp);
+    }
+    el.fb.hidden = false;
+    el.right.textContent = score() + " correct";
+    el.next.textContent = run.at === run.items.length - 1 ? "See my score" : "Next question";
+    el.next.hidden = false;
+    el.next.focus({ preventScroll: true });
+  }
+
+  function answer(i) {
+    if (run.answers[run.at]) return;
+    var it = run.items[run.at], ok = i === it.correct;
+    run.answers[run.at] = { pick: it.choices[i], ok: ok };
+    Array.prototype.forEach.call(el.opts.children, function (b, j) {
+      b.disabled = true;
+      if (j === it.correct) b.classList.add("right");
+      else if (j === i) b.classList.add("wrong");
+      else b.classList.add("dim");
+    });
+    feedback(ok, it);
+  }
+
+  function answerNum(form) {
+    if (run.answers[run.at]) return;
+    var it = run.items[run.at], input = form.querySelector("input");
+    var raw = input.value.trim(), clean = raw.replace(/[−–]/g, "-").replace(/[^0-9.\-]/g, "");
+    if (!clean || isNaN(parseFloat(clean))) { input.focus(); return; }
+    var v = parseFloat(clean), ok = Math.abs(v - it.num) < 0.01;
+    run.answers[run.at] = { pick: raw.replace(/°$/, "") + it.unit, ok: ok };
+    input.disabled = true;
+    form.querySelector("button").disabled = true;
+    form.querySelector(".numbox").classList.add(ok ? "right" : "wrong");
+    feedback(ok, it);
+  }
+
+  function next() {
+    if (!run || !run.answers[run.at]) return;
+    if (run.at < run.items.length - 1) { run.at += 1; render(); } else finish();
+  }
+  el.next.addEventListener("click", next);
+
+  document.addEventListener("keydown", function (e) {
+    if (panels.practice.hidden || el.run.hidden || !run) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var typing = document.activeElement && document.activeElement.tagName === "INPUT";
+    var k = parseInt(e.key, 10), it = run.items[run.at];
+    if (!typing && it.choices && k >= 1 && k <= 4 && !run.answers[run.at]) { e.preventDefault(); answer(k - 1); }
+    else if (e.key === "Enter" && run.answers[run.at] && document.activeElement !== el.next) { e.preventDefault(); next(); }
+  });
+
+  function finish() {
+    var n = run.items.length, s = score(), pct = Math.round(s / n * 100);
+    el.run.hidden = true; el.done.hidden = false;
+    document.getElementById("sc-num").innerHTML = s + "<small>/" + n + "</small>";
+    document.getElementById("sc-title").textContent =
+      pct === 100 ? "Perfect score. You're ready." :
+      pct >= 85 ? pct + "%. Nearly there." :
+      pct >= 70 ? pct + "%. Review the misses below." :
+      pct + "%. Go back to Learn, then try again.";
+    var by = {};
+    run.items.forEach(function (it, i) {
+      by[it.t] = by[it.t] || [0, 0];
+      by[it.t][1] += 1; if (run.answers[i].ok) by[it.t][0] += 1;
+    });
+    var tally = document.getElementById("sc-tally");
+    tally.innerHTML = "";
+    TOPICS.forEach(function (t) {
+      if (!by[t.id]) return;
+      var sp = document.createElement("span");
+      sp.textContent = t.name + ": " + by[t.id][0] + "/" + by[t.id][1];
+      tally.appendChild(sp);
+    });
+    var missed = [];
+    run.items.forEach(function (it, i) { if (!run.answers[i].ok) missed.push(i); });
+    var rv = document.getElementById("sc-review");
+    rv.innerHTML = "";
+    var missBtn = document.getElementById("sc-missed");
+    missBtn.hidden = missed.length === 0;
+    document.getElementById("sc-note").hidden = missed.length === 0;
+    missBtn.textContent = "Retake the " + missed.length + " I missed";
+    if (missed.length) {
+      var h3 = document.createElement("h3");
+      h3.textContent = "Review what you missed";
+      rv.appendChild(h3);
+      missed.forEach(function (i) {
+        var it = run.items[i];
+        var d = document.createElement("div");
+        d.className = "rv";
+        d.innerHTML = '<p class="rq"></p><p>Your answer: <span class="ry"></span></p><p>Correct: <span class="rc"></span></p><p class="re"></p>';
+        d.querySelector(".rq").innerHTML = fmt((it.fig ? "Diagram question: " : "") + it.q);
+        d.querySelector(".ry").innerHTML = fmt(run.answers[i].pick);
+        d.querySelector(".rc").innerHTML = fmt(it.a);
+        d.querySelector(".re").innerHTML = fmt(Array.isArray(it.e) ? it.e.join(" ") : it.e);
+        rv.appendChild(d);
+      });
+    }
+    run.missed = missed.map(function (i) { return run.items[i].idx; });
+    el.done.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+
+  document.getElementById("sc-missed").addEventListener("click", function () {
+    if (run && run.missed && run.missed.length) begin(GEO.shuffle(run.missed));
+  });
+  document.getElementById("sc-new").addEventListener("click", function () {
+    el.done.hidden = true; el.run.hidden = true; el.start.hidden = false; run = null;
+    el.start.scrollIntoView({ block: "start", behavior: "auto" });
+  });
+
+  /* ---------------- open the right tab ---------------- */
+  var h = (location.hash || "").slice(1);
+  if (h === "practice") show("practice");
+  else if (h && document.getElementById(h) && panels.learn.contains(document.getElementById(h))) show("learn");
+  else {
+    var saved = null;
+    try { saved = localStorage.getItem("geo-tab"); } catch (e) {}
+    show(saved === "practice" ? "practice" : "learn");
+  }
+})();
+</script>
+</body>
+</html>
