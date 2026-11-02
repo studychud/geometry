@@ -67,6 +67,10 @@ i.v{font-family:var(--f-var);font-style:italic;font-size:1.06em}
 .masthead{background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);background-size:26px 26px;background-position:-1px -1px}
 .masthead .wrap{padding-block:44px 30px;display:grid;gap:10px}
 .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+.home-link{justify-self:start;display:inline-flex;align-items:center;gap:7px;margin-bottom:12px;padding:6px 14px 6px 10px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink-2);font-size:.9rem;font-weight:700;letter-spacing:0;text-transform:none;text-decoration:none;transition:color .15s, border-color .15s}
+.home-link svg{width:16px;height:16px;flex:none;transition:transform .15s}
+.home-link:hover{color:var(--ink);border-color:var(--ink)}
+.home-link:hover svg{transform:translateX(-2px)}
 .masthead h1{font-size:clamp(2.7rem, 7.4vw, 4.8rem);letter-spacing:-.02em;font-weight:500}
 .dek{max-width:62ch;color:var(--ink-2);font-size:1.08rem}
 
@@ -367,6 +371,7 @@ html{scroll-behavior:smooth}
 <body>
 <header class="masthead">
   <div class="wrap">
+    <a class="home-link" href="../"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H4M7.5 4.5 4 8l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>All subjects</a>
     <p class="eyebrow">Geometry · Unit 2</p>
     <h1>Parallel Lines</h1>
     <p class="dek">Angle pairs made by parallel lines and a transversal, solving for <i class="v">x</i>, two-column proofs, and the logic behind them. Learn it, then test yourself.</p>
